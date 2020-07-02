@@ -15,4 +15,9 @@
     <ProjectReference Include="..\Zoopla.Selenium.PageObjects\Zoopla.Selenium.PageObjects.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Hooks\" />
+    <Folder Include="StepDefinitions\" />
+  </ItemGroup>
+
 </Project>
