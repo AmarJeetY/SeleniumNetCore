@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Zoopla.Selenium.Framework.Interfaces
+﻿namespace Zoopla.Selenium.Framework.Interfaces
 {
     public interface ISeleniumConfig
     {
-        string RegisterUser { get; set; }
+        string BaseUrl { get; set; }
+        string RegisterUserUrl { get; set; }
+        string Browser { get; set; }
     }
 }

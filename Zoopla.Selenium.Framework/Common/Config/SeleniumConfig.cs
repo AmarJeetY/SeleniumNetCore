@@ -5,8 +5,10 @@ using Zoopla.Selenium.Framework.Interfaces;
 
 namespace Zoopla.Selenium.Framework.Common.Config
 {
-    class SeleniumConfig : ISeleniumConfig
+    public class SeleniumConfig : ISeleniumConfig
     {
-        public string RegisterUser { get; set; }
+        public string BaseUrl { get; set; }
+        public string RegisterUserUrl { get; set; }
+        public string Browser { get; set; }
     }
 }
