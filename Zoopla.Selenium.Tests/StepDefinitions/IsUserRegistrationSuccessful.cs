@@ -21,7 +21,7 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
         [AfterScenario]
         public void AfterScenario(ScenarioContext scenarioContext, FeatureContext featureContext)
         {
-           
+            _seleniumDriver.CloseWebDriverInstance();
         }
 
         [BeforeFeature]
@@ -31,12 +31,13 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
         }
 
         [Given(@"I am in need of a (.*) property")]
-        public void GivenIAmInNeedOfAProperty(string p0)
+        public void GivenIAmInNeedOfAProperty(string typeOfProperty)
         {
-            ScenarioContext.Current.Pending();
+            var test = _seleniumDriver.GetWebDriver;
+
         }
 
-        [When(@"I register myself on zoopla website")]
+        [When(@"I register myself on Zoopla website")]
         public void WhenIRegisterMyselfOnZooplaWebsite()
         {
             ScenarioContext.Current.Pending();

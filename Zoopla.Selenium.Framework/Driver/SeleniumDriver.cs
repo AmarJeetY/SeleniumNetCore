@@ -29,16 +29,16 @@ namespace Zoopla.Selenium.Framework.Driver
             WebDriver.Manage().Window.Maximize();
             NavigateToUrl(baseURL);
         }
-        public static IWebDriver GetWebDriver => WebDriver;
+        public IWebDriver GetWebDriver => WebDriver;
 
         public static void NavigateToUrl(string url)
         {
             WebDriver.Url = url;
         }
 
-        public static string Title => WebDriver.Title;
+        public string Title => WebDriver.Title;
 
-        public static void CloseWebDriverInstance()
+        public void CloseWebDriverInstance()
         {
             if (WebDriver == null) return;
             WebDriver.Quit();

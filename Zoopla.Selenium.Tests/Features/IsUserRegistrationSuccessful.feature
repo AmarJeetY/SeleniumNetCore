@@ -6,7 +6,7 @@
 @registerUserTest
 Scenario: Register New User
 	Given I am in need of a <typeof> property
-	When I register myself on zoopla website
+	When I register myself on Zoopla website
 	Then I get <result> of registration
 
 	Examples: 
