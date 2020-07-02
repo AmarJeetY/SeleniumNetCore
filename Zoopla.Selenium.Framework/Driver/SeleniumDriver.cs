@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Configuration;
-using System.Runtime.CompilerServices;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;

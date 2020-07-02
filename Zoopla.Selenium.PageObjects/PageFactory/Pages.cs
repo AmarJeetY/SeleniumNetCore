@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Zoopla.Selenium.Framework.Driver;
-using Zoopla.Selenium.PageObjects.Pages;
+﻿using Zoopla.Selenium.PageObjects.Pages;
 
 namespace Zoopla.Selenium.PageObjects.PageFactory
 {

@@ -1,5 +1,4 @@
-﻿using System;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 using Zoopla.Selenium.Framework.Interfaces;
 using Zoopla.Selenium.Framework.Utilities;
 
