@@ -10,3 +10,5 @@
 /Zoopla.Selenium.Tests/obj/Debug/netcoreapp3.1
 /Zoopla.Selenium.Tests/obj
 /Zoopla.Selenium.PageObjects/obj
+/.vs/Zoopla.Selenium.NetCore/DesignTimeBuild
+/Zoopla.Selenium.PageObjects/bin/Debug/netcoreapp3.1
