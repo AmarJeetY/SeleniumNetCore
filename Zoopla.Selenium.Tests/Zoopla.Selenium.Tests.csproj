@@ -5,7 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="SpecFlow" Version="3.3.30" />
+    <PackageReference Include="SpecFlow.xUnit" Version="3.3.30" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Zoopla.Selenium.Framework\Zoopla.Selenium.Framework.csproj" />
+    <ProjectReference Include="..\Zoopla.Selenium.PageObjects\Zoopla.Selenium.PageObjects.csproj" />
   </ItemGroup>
 
 </Project>
