@@ -24,7 +24,7 @@ namespace Zoopla.Selenium.Framework.Utilities
             var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("AppSettings.json", optional: true, reloadOnChange: true).AddEnvironmentVariables();
             var configuration = builder.Build();
             var seleniumConfig = new SeleniumConfig();
-            configuration.Bind("PageUrl", seleniumConfig);
+            configuration.Bind("ZooplaTestParameters", seleniumConfig);
             container.RegisterInstanceAs(seleniumConfig, typeof(ISeleniumConfig));
         }
     }
