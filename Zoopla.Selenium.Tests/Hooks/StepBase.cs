@@ -17,6 +17,12 @@ namespace Zoopla.Selenium.Tests.Hooks
         {
             IOC.Register(featureContext.FeatureContainer);
         }
+        
+        [StepArgumentTransformation(@"(true|false|present|not present)")]
+        public bool BooleanTransform(string value)
+        {
+            return value == "true" || value == "present";
+        }
     }
 }
 
