@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Runtime.CompilerServices;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -11,13 +12,13 @@ namespace Zoopla.Selenium.Framework.Driver
     public class SeleniumDriver : ISeleniumDriver
     {
         private IWebDriver _webDriver;
-        private string browser = "chrome";
+        private string _browser;
 
         private IWebDriver InitialiseWebDriver()
         {
-            _webDriver = browser.ToLower() switch
+            _webDriver = _browser.ToLower() switch
             {
-                "chrome" => (IWebDriver) new ChromeDriver(),
+                "chrome" => (IWebDriver)new ChromeDriver(),
                 "firefox" => new FirefoxDriver(),
                 "ie" => new InternetExplorerDriver(),
                 _ => new ChromeDriver()
@@ -36,6 +37,8 @@ namespace Zoopla.Selenium.Framework.Driver
         {
             GetWebDriver.Url = url;
         }
+        
+        public void SetBrowser(string browser) => _browser = browser;
 
         //public string Title => GetWebDriver.Title;
 
