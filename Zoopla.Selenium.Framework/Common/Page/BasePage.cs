@@ -31,7 +31,7 @@ namespace Zoopla.Selenium.Framework.Common.Page
         {
             try
             {
-                SeleniumDriver.Goto(Url);
+                SeleniumDriver.NavigateToUrl(Url);
             }
             catch (UriFormatException)
             {

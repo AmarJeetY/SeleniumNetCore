@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -8,32 +9,13 @@ namespace Zoopla.Selenium.Framework.Driver
 {
     class SeleniumDriver
     {
-        public static string Browser { get; set; }
         public static IWebDriver WebDriver;
-
-        public static string Title
+        private static string baseURL = ConfigurationManager.AppSettings["url"];
+        private static string browser = ConfigurationManager.AppSettings["browser"];
+        
+        private void InitialiseWebDriver()
         {
-            get { return Instance.Title; }
-        }
-
-        public static string Url
-        {
-            get { return Instance.Url; }
-        }
-
-        public static IWebDriver Instance
-        {
-            get { return WebDriver ??= CreateWebDriver(); }
-        }
-
-        public static ISearchContext SearchContextDriver
-        {
-            get { return Instance; }
-        }
-
-        private static IWebDriver CreateWebDriver()
-        {
-            WebDriver = Browser.ToLower() switch
+            WebDriver = browser.ToLower() switch
             {
                 "chrome" => (IWebDriver) new ChromeDriver(),
                 "firefox" => new FirefoxDriver(),
@@ -44,21 +26,22 @@ namespace Zoopla.Selenium.Framework.Driver
             // Adding implicit wait of 10 seconds based on page loading times
             WebDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             WebDriver.Manage().Window.Maximize();
-
-            return WebDriver;
+            NavigateToUrl(baseURL);
         }
+        public static IWebDriver GetWebDriver => WebDriver;
 
-        public static void Goto(string url)
+        public static void NavigateToUrl(string url)
         {
-            //Instance.Url = url != null && url.Trim() == "//" ? BaseUrl : BaseUrl + url;
+            WebDriver.Url = url;
         }
 
-        public static void Close()
+        public static string Title => WebDriver.Title;
+
+        public static void CloseWebDriverInstance()
         {
             if (WebDriver == null) return;
-            Instance.Quit();
+            WebDriver.Quit();
             WebDriver = null;
         }
     }
 }
-
