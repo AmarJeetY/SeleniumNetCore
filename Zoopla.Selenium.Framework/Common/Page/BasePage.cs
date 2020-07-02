@@ -31,7 +31,7 @@ namespace Zoopla.Selenium.Framework.Common.Page
         {
             try
             {
-                SeleniumDriver.NavigateToUrl(Url);
+                //SeleniumDriver.NavigateToUrl(Url);
             }
             catch (UriFormatException)
             {
@@ -45,13 +45,13 @@ namespace Zoopla.Selenium.Framework.Common.Page
             {
                 var result = false;
 
-                if (SeleniumDriver.Title != null)
-                {
-                    if (SeleniumDriver.Title.Contains(Title))
-                    {
-                        result = true;
-                    }
-                }
+                //if (SeleniumDriver.Title != null)
+                //{
+                //    if (SeleniumDriver.Title.Contains(Title))
+                //    {
+                //        result = true;
+                //    }
+                //}
 
                 //(result, "IsAt() Method, Title does contain {0}, URL: {1}", Title, SeleniumDriver.Url);
 

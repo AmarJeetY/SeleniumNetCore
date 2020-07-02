@@ -1,6 +1,6 @@
 ﻿Feature: RegisterUser
 	In order to get property alerts for my desired property
-	As a Zoopla customer
+	As a prospective Zoopla customer
 	I want to regsister myself to Zoopla website
 
 @registerUserTest

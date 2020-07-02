@@ -1,4 +1,5 @@
-﻿using TechTalk.SpecFlow;
+﻿using System.ComponentModel.DataAnnotations;
+using TechTalk.SpecFlow;
 using Zoopla.Selenium.Tests.Hooks;
 
 namespace Zoopla.Selenium.Tests.StepDefinitions
@@ -33,20 +34,24 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
         [Given(@"I am in need of a (.*) property")]
         public void GivenIAmInNeedOfAProperty(string typeOfProperty)
         {
-            var test = _seleniumDriver.GetWebDriver;
+            _seleniumDriver.GetWebDriver.Navigate().GoToUrl("https://www.zoopla.co.uk/register/");
+            
+
+
 
         }
 
         [When(@"I register myself on Zoopla website")]
         public void WhenIRegisterMyselfOnZooplaWebsite()
         {
-            ScenarioContext.Current.Pending();
+            
         }
 
         [Then(@"I get (.*) of registration")]
         public void ThenIGetOfRegistration(string p0)
         {
-            ScenarioContext.Current.Pending();
+
         }
+
     }
 }
