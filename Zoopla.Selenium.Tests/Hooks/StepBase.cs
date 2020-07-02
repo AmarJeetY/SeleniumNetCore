@@ -1,16 +1,16 @@
 ﻿using TechTalk.SpecFlow;
+using Zoopla.Selenium.Framework.Interfaces;
 using Zoopla.Selenium.Framework.Utilities;
 
 namespace Zoopla.Selenium.Tests.Hooks
 {
-    public class StepBase
+    public class StepBase : TechTalk.SpecFlow.Steps
     {
-       // protected IQuoteEngineClient _quoteEngineClient;
+       protected ISeleniumDriver _seleniumDriver;
        
         public void BeforeScenario()
         {
-           // _quoteEngineClient = IOC.Resolve<IQuoteEngineClient>(FeatureContext.FeatureContainer);
-            
+            _seleniumDriver = IOC.Resolve<ISeleniumDriver>(FeatureContext.FeatureContainer);
         }
 
         public static void BeforeFeatureStep(FeatureContext featureContext)
@@ -25,5 +25,3 @@ namespace Zoopla.Selenium.Tests.Hooks
         }
     }
 }
-
-

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 using Zoopla.Selenium.Tests.Hooks;
 
 namespace Zoopla.Selenium.Tests.StepDefinitions
@@ -50,8 +47,5 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
         {
             ScenarioContext.Current.Pending();
         }
-
-
-
     }
 }

@@ -2,6 +2,7 @@
 using BoDi;
 using Microsoft.Extensions.Configuration;
 using Zoopla.Selenium.Framework.Common.Config;
+using Zoopla.Selenium.Framework.Driver;
 using Zoopla.Selenium.Framework.Interfaces;
 
 namespace Zoopla.Selenium.Framework.Utilities
@@ -11,8 +12,7 @@ namespace Zoopla.Selenium.Framework.Utilities
         public static void Register(IObjectContainer container)
         {
             RegisterConfig(container);
-            //container.RegisterTypeAs<QuoteEngineClient, IQuoteEngineClient>();
-
+            container.RegisterTypeAs<SeleniumDriver, ISeleniumDriver>();
         }
 
         public static T Resolve<T>(IObjectContainer container)
@@ -23,10 +23,10 @@ namespace Zoopla.Selenium.Framework.Utilities
         {
             var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("AppSettings.json", optional: true, reloadOnChange: true).AddEnvironmentVariables();
             var configuration = builder.Build();
+
             var seleniumConfig = new SeleniumConfig();
-            configuration.Bind("ZooplaTestParameters", seleniumConfig);
+            configuration.Bind("TestParameters", seleniumConfig);
             container.RegisterInstanceAs(seleniumConfig, typeof(ISeleniumConfig));
         }
     }
 }
-

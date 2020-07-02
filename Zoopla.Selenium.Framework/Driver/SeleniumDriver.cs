@@ -4,10 +4,11 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
+using Zoopla.Selenium.Framework.Interfaces;
 
 namespace Zoopla.Selenium.Framework.Driver
 {
-    class SeleniumDriver
+    public class SeleniumDriver : ISeleniumDriver
     {
         public static IWebDriver WebDriver;
         private static string baseURL = ConfigurationManager.AppSettings["url"];
