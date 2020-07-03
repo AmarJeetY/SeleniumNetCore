@@ -1,6 +1,5 @@
-testcase,TypeOfSearch,SearchArea,MinPrice,MaxPrice,PropertyType
-AC01,Rent,,,,
-AC02,Rent,,,,
-AC03,Sale,,,,
-AC04,,,,,
-AC05,,,,,
+testcase,TypeOfSearch,SearchArea,MinPrice,MaxPrice,PropertyType,Bedrooms,Keywords,PricePerMonthOrWeek,Furniture,DistanceFromLocation,Added,SortBy,Include
+AC01-EmailAlerts,Rent,London,800,1000,,1+,,,,,,,
+AC01-PropSearch,Rent,NN1 2HS,,,House,,,,,,,,
+AC02-PropSearch,Rent,London,,,House,,Garage,,,,,,
+AC03-PropSearch,Rent,SE1 2LH,,,,,,,,15,,,

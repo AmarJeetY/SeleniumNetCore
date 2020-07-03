@@ -9,11 +9,11 @@ using Zoopla.Selenium.Tests.Hooks;
 namespace Zoopla.Selenium.Tests.StepDefinitions
 {
     [Binding]
-    public class IsUserRegistrationSuccessful : StepBase
+    public class StepDefinitions : StepBase
     {
         private readonly ISeleniumConfig _configuration;
         private IWebDriver driver;
-        public IsUserRegistrationSuccessful(ISeleniumConfig configuration)
+        public StepDefinitions(ISeleniumConfig configuration)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
            

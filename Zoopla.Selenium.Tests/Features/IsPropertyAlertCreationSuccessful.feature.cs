@@ -85,12 +85,12 @@ namespace Zoopla.Selenium.Tests.Features
         [Xunit.SkippableTheoryAttribute(DisplayName="Get Email updates for your property")]
         [Xunit.TraitAttribute("FeatureTitle", "EmailAlerts")]
         [Xunit.TraitAttribute("Description", "Get Email updates for your property")]
-        [Xunit.TraitAttribute("Category", "registerForPropertyAlerts")]
-        [Xunit.InlineDataAttribute("AC01-EmailAlerts", "Rented property costing £800 to £1000 pcm in London", new string[0])]
-        public virtual void GetEmailUpdatesForYourProperty(string testcase, string description, string[] exampleTags)
+        [Xunit.TraitAttribute("Category", "registerForPropertyAlert")]
+        [Xunit.InlineDataAttribute("AC01-EmailAlerts", "Rented property costing £800 to £1000 pcm in London", "", new string[0])]
+        public virtual void GetEmailUpdatesForYourProperty(string testcase, string description, string alertfrequency, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "registerForPropertyAlerts"};
+                    "registerForPropertyAlert"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -99,6 +99,7 @@ namespace Zoopla.Selenium.Tests.Features
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("testcase", testcase);
             argumentsOfScenario.Add("description", description);
+            argumentsOfScenario.Add("alertfrequency", alertfrequency);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get Email updates for your property", null, tagsOfScenario, argumentsOfScenario);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
@@ -127,7 +128,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When(string.Format("I try to search property described in {0}", testcase), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
- testRunner.Then("I am able to register for email alerts with frequency of <alertfrequency>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("I am able to register for email alerts with frequency of {0}", alertfrequency), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -136,12 +137,12 @@ this.ScenarioInitialize(scenarioInfo);
         [Xunit.SkippableTheoryAttribute(DisplayName="Update existing email alert")]
         [Xunit.TraitAttribute("FeatureTitle", "EmailAlerts")]
         [Xunit.TraitAttribute("Description", "Update existing email alert")]
-        [Xunit.TraitAttribute("Category", "updatePropertyAlert")]
-        [Xunit.InlineDataAttribute("AC01-EmailAlerts", "Rented property costing £800 to £1000 pcm in London", "", new string[0])]
-        public virtual void UpdateExistingEmailAlert(string testcase, string description, string alertfrequency, string[] exampleTags)
+        [Xunit.TraitAttribute("Category", "registerAndUpdatePropertyAlert")]
+        [Xunit.InlineDataAttribute("AC01-EmailAlerts", "Rented property costing £800 to £1000 pcm in London", "", "", new string[0])]
+        public virtual void UpdateExistingEmailAlert(string testcase, string description, string alertfrequency, string changetoalertfrequency, string[] exampleTags)
         {
             string[] @__tags = new string[] {
-                    "updatePropertyAlert"};
+                    "registerAndUpdatePropertyAlert"};
             if ((exampleTags != null))
             {
                 @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
@@ -151,6 +152,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("testcase", testcase);
             argumentsOfScenario.Add("description", description);
             argumentsOfScenario.Add("alertfrequency", alertfrequency);
+            argumentsOfScenario.Add("changetoalertfrequency", changetoalertfrequency);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update existing email alert", null, tagsOfScenario, argumentsOfScenario);
 #line 18
 this.ScenarioInitialize(scenarioInfo);
@@ -182,7 +184,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then(string.Format("I am able to register for email alerts with frequency of {0}", alertfrequency), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 22
- testRunner.And(string.Format("I am able to update email update frequency to {0}", alertfrequency), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I am able to update email update frequency to {0}", changetoalertfrequency), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
