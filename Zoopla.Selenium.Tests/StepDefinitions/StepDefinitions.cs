@@ -6,7 +6,7 @@ using TestProject.SDK.PageObjects;
 using Zoopla.Selenium.Framework.Interfaces;
 using Zoopla.Selenium.Framework.Utilities;
 using Zoopla.Selenium.Tests.Hooks;
-using RegisterUserPage = Zoopla.Selenium.Tests.Pages.RegisterUserPage;
+using Zoopla.Selenium.Tests.Pages;
 
 namespace Zoopla.Selenium.Tests.StepDefinitions
 {
@@ -14,11 +14,10 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
     public class StepDefinitions : StepBase
     {
         private readonly ISeleniumConfig _configuration;
-        private IWebDriver driver;
+        private IWebDriver _driver;
         public StepDefinitions(ISeleniumConfig configuration)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
-
         }
 
         [BeforeScenario]
@@ -26,25 +25,19 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
         {
             base.BeforeScenario();
             _seleniumDriver.SetBrowser(_configuration.Browser);
-            driver = _seleniumDriver.GetWebDriver;
+            _driver = _seleniumDriver.GetWebDriver;
         }
-
-        [AfterStep]
-        public void AfterStep(ScenarioContext context)
-        {
-
-        }
-
-        [AfterScenario]
-        public void AfterScenario(ScenarioContext scenarioContext, FeatureContext featureContext)
-        {
-            _seleniumDriver.CloseWebDriverInstance();
-        }
-
+        
         [BeforeFeature]
         public new static void BeforeFeatureStep(FeatureContext featureContext)
         {
             StepBase.BeforeFeatureStep(featureContext);
+        }
+
+        [AfterFeature]
+        public void CloseDriverInstance()
+        {
+            _seleniumDriver.CloseWebDriverInstance();
         }
 
         [Given(@"I have registered on Zoopla and logged in	")]
@@ -101,55 +94,50 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
 
         }
 
-        [Given(@"I have registered on Zoopla and logged in")]
-        public void RegisterAndLogIn()
+        [Given(@"I have registered on Zoopla with (.*) and logged in")]
+        public void RegisterAndLogIn(string userProfile)
         {
-            driver.Navigate().GoToUrl(_configuration.RegisterUserUrl);
+            _driver.Navigate().GoToUrl(_configuration.RegisterUserUrl);
             var registerUserPage = new RegisterUserPage();
-            PageFactory.InitElements(driver, registerUserPage);
-            registerUserPage.RegisterAsNewUser(GeneratePersonData.RandomEmail(5), "Password123!");
+            PageFactory.InitElements(_driver, registerUserPage);
+            registerUserPage.RegisterAsNewUser(GeneratePersonData.RandomEmail(5), "Password123!", userProfile);
         }
+
+        [Then(@"I am able to update email update frequency to (.*)")]
+        public void UpdateEmailUpdateFrequency(string emailUpdateFrequency)
+        {
+            _driver.Navigate().GoToUrl(_configuration.MyZooplaUrl);
+
+            
+        }
+
 
         [When(@"I try to search property described in (.*)")]
         public void WhenITryToSearchPropertyIn(string testCase)
         {
             var parameters = _testData.GetTestParameters(testCase);
-
-
-
-
-            driver.FindElement(By.Id("mn-rent")).Click();
-            var mywebelementt = driver.FindElement(By.Id("search-input-location"));
+            
+            _driver.FindElement(By.Id("mn-rent")).Click();
+            var mywebelementt = _driver.FindElement(By.Id("search-input-location"));
             mywebelementt.SendKeys("London");
             mywebelementt.SendKeys(Keys.Tab);
 
-            var minprice = driver.FindElement(By.Id("rent_price_min_per_month"));
+            var minprice = _driver.FindElement(By.Id("rent_price_min_per_month"));
             var minpriceelement = new SelectElement(minprice);
             minpriceelement.SelectByText("£800 pcm");
 
-            var maxprice = driver.FindElement(By.Id("rent_price_max_per_month"));
+            var maxprice = _driver.FindElement(By.Id("rent_price_max_per_month"));
             var maxpriceelement = new SelectElement(maxprice);
             maxpriceelement.SelectByText("£1,000 pcm");
 
-            var bedrooms = driver.FindElement(By.Id("beds_min"));
+            var bedrooms = _driver.FindElement(By.Id("beds_min"));
             var bedroomselement = new SelectElement(bedrooms);
             bedroomselement.SelectByText("1+");
 
-            driver.FindElement(By.Id("search-submit")).Click();
+            _driver.FindElement(By.Id("search-submit")).Click();
         }
 
-        [Then(@"I am able to update email update frequency to (.*)")]
-        public void UpdateEmailUpdateFrequency(string p0)
-        {
-            driver.FindElement(By.Id("alert-btn-create")).Click();
-            driver.FindElement(By.Id("frequency_1")).Click();
-            driver.FindElement(By.Name("action:save")).Click();
-
-            driver.FindElement(By.Id("alerts-buttons-edit")).Click();
-
-            driver.FindElement(By.Id("frequency_3")).Click();
-            driver.FindElement(By.Name("action:save")).Click();
-        }
+        
 
         [Given(@"I have visited Zoopla home page and selected option (.*)")]
         public void SelectSearch(string p0)
@@ -159,18 +147,14 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
 
 
         [Then(@"I am able to register for email alerts with frequency of (.*)")]
-        public void GetAlertsForChosenFrequency(string alertfrequency)
+        public void GetAlertsForChosenFrequency(string alertFrequency)
         {
-
+            _driver.Navigate().GoToUrl(_configuration.MyZooplaUrl);
+            var registerEmailAlertsPage = new EmailAlerts();
+            PageFactory.InitElements(_driver, registerEmailAlertsPage);
+            registerEmailAlertsPage.CreateEmailAlert(alertFrequency);
         }
-
-
-        [Then(@"I get (.*) of registration")]
-        public void ThenIGetOfRegistration(string p0)
-        {
-
-        }
-
+        
 
     }
 }

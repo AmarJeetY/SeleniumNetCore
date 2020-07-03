@@ -1,13 +1,12 @@
-﻿using System.Data;
-using System.IO;
+﻿using System.IO;
 using BoDi;
 using Microsoft.Extensions.Configuration;
 using Zoopla.Selenium.Framework.Common.Config;
 using Zoopla.Selenium.Framework.Driver;
 using Zoopla.Selenium.Framework.Interfaces;
-using IDataReader = Zoopla.Selenium.Framework.Interfaces.IDataReader;
+using Zoopla.Selenium.Framework.Utilities;
 
-namespace Zoopla.Selenium.Framework.Utilities
+namespace Zoopla.Selenium.Framework.Container
 {
     public class IOC
     {
@@ -18,7 +17,6 @@ namespace Zoopla.Selenium.Framework.Utilities
             container.RegisterTypeAs<TestData, ITestData>();
             container.RegisterTypeAs<CSVReader, IDataReader>();
             container.RegisterTypeAs<TestCaseParser, ITestCaseParser>();
-            
         }
 
         public static T Resolve<T>(IObjectContainer container)

@@ -5,22 +5,26 @@
 
 @registerForPropertyAlert
 Scenario: Get Email updates for your property
-	Given I have registered on Zoopla and logged in	
+	Given I have registered on Zoopla with <myprofile> and logged in	
 	When I try to search property described in <testcase>
 	Then I am able to register for email alerts with frequency of <alertfrequency>
 	
+	# Please refer to TestData.csv file in TestData folder
+	# for search query parameters
 	Examples: 
-	| testcase         | description                                         | alertfrequency |
-	| AC01-EmailAlerts | Rented property costing £800 to £1000 pcm in London |                |
+	| testcase         | description                                        | alertfrequency | myprofile            |
+	| AC01-EmailAlerts | Rented property priced £800 to £1000 pcm in London | Daily          | I am looking to rent |
 
 
 @registerAndUpdatePropertyAlert
 Scenario: Update existing email alert
-	Given I have registered on Zoopla and logged in	
+	Given I have registered on Zoopla with <myprofile> and logged in		
 	When I try to search property described in <testcase>
 	Then I am able to register for email alerts with frequency of <alertfrequency>
 	And I am able to update email update frequency to <changetoalertfrequency>
 
+	# Please refer to TestData.csv file in TestData folder
+	# for search query parameters
 	Examples: 
-	| testcase         | description                                         | alertfrequency | changetoalertfrequency |
-	| AC01-EmailAlerts | Rented property costing £800 to £1000 pcm in London |                |                        |
+	| testcase         | description                                         | alertfrequency | changetoalertfrequency |myprofile            |
+	| AC01-EmailAlerts | Rented property priced £800 to £1000 pcm in London | Weekly         | None                   |I am looking to rent |

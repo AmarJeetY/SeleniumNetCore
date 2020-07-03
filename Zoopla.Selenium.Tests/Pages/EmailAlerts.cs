@@ -1,0 +1,87 @@
+﻿using OpenQA.Selenium;
+using SeleniumExtras.PageObjects;
+
+
+namespace Zoopla.Selenium.Tests.Pages
+{
+    internal class EmailAlerts
+    {
+        [FindsBy(How = How.Id, Using = "alert-btn-create")]
+        private IWebElement createAlertElement;
+
+        [FindsBy(How = How.Id, Using = "frequency_0")]
+        private IWebElement selectInstantAlertElement;
+
+        [FindsBy(How = How.Id, Using = "frequency_1")]
+        private IWebElement selectDailyAlertElement;
+
+        [FindsBy(How = How.Id, Using = "frequency_3")]
+        private IWebElement selectThreeDaysAlertElement;
+
+        [FindsBy(How = How.Id, Using = "frequency_7")]
+        private IWebElement selectWeeklyAlertElement;
+
+        [FindsBy(How = How.Id, Using = "frequency_none")]
+        private IWebElement selectNoAlertElement;
+
+        [FindsBy(How = How.Name, Using = "action:save")]
+        private IWebElement saveAlertElement;
+
+        [FindsBy(How = How.Id, Using = "alerts-buttons-edit")]
+        private IWebElement editExistingAlertElement;
+
+        private void CreateEmailAlert() => createAlertElement.Click();
+
+        private void SetAlertFrequency(string alertFrequency)
+        {
+            switch (alertFrequency)
+            {
+                case "Instant":
+                    selectInstantAlertElement.Click();
+                    break;
+                case "Daily":
+                    selectDailyAlertElement.Click();
+                    break;
+                case "ThreeDays":
+                    selectThreeDaysAlertElement.Click();
+                    break;
+                case "Weekly":
+                    selectWeeklyAlertElement.Click();
+                    break;
+                case "None":
+                    selectNoAlertElement.Click();
+                    break;
+            }
+        }
+
+        private void SaveEmailAlert() => saveAlertElement.Click();
+        private void EditExistingAlert() => editExistingAlertElement.Click();
+        
+        public void CreateEmailAlert(string alertFrequency)
+        {
+            CreateEmailAlert();
+            SetAndSaveAlert(alertFrequency);
+        }
+
+        public void UpdateExistingEmailAlert(string alertFrequencyToUpdate)
+        {
+            EditExistingAlert();
+            SetAndSaveAlert(alertFrequencyToUpdate);
+        }
+
+        private void SetAndSaveAlert(string alertFrequency)
+        {
+            SetAlertFrequency(alertFrequency);
+            SaveEmailAlert();
+
+        }
+
+
+
+
+
+
+
+
+    }
+}
