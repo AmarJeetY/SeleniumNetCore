@@ -23,7 +23,7 @@ namespace Zoopla.Selenium.Framework.Driver
             };
 
             // Adding implicit wait of 10 seconds based on page loading times
-            _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+            _webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             _webDriver.Manage().Window.Maximize();
 
             return _webDriver;
@@ -37,9 +37,6 @@ namespace Zoopla.Selenium.Framework.Driver
         }
         
         public void SetBrowser(string browser) => _browser = browser;
-
-        //public string Title => GetWebDriver.Title;
-
         public void CloseWebDriverInstance()
         {
             if (_webDriver == null) return;

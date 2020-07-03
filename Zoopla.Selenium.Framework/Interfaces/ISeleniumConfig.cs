@@ -2,12 +2,12 @@
 {
     public interface ISeleniumConfig
     {
-        string RegisterUserUrl { get;}
-        string Browser { get;}
-        string MyAccountUrl { get; }
-        string ToRentUrl { get; }
-        string ForSaleUrl { get; }
-        string HousePrices { get;}
+        string RegisterUserUrl { get; set; }
+        string Browser { get; set; }
+        string MyAccountUrl { get; set; }
+        string ToRentUrl { get; set; }
+        string ForSaleUrl { get; set; }
+        string HousePrices { get; set; }
 
     }
 }

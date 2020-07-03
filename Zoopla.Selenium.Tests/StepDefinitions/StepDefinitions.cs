@@ -35,9 +35,9 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
         }
 
         [AfterFeature]
-        public void CloseDriverInstance()
+        public static void AfterFeatureStep()
         {
-            _seleniumDriver.CloseWebDriverInstance();
+            //_seleniumDriver.CloseWebDriverInstance();
         }
 
         [Given(@"I have registered on Zoopla and logged in	")]
