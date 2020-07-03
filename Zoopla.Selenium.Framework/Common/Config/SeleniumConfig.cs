@@ -4,11 +4,11 @@ namespace Zoopla.Selenium.Framework.Common.Config
 {
     public class SeleniumConfig : ISeleniumConfig
     {
-        public string RegisterUserUrl { get; set; }
-        public string Browser { get; set; }
-        public string MyZooplaUrl { get; set; }
-        public string ToRentUrl { get; set; }
-        public string ForSaleUrl { get; set; }
-        public string HousePrices { get; set; }
+        public string RegisterUserUrl { get;}
+        public string Browser { get;}
+        public string MyAccountUrl { get;}
+        public string ToRentUrl { get;}
+        public string ForSaleUrl { get; }
+        public string HousePrices { get;}
     }
 }

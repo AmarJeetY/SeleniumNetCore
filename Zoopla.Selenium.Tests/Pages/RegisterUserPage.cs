@@ -7,34 +7,34 @@ namespace Zoopla.Selenium.Tests.Pages
     internal class RegisterUserPage
     {
         [FindsBy(How = How.ClassName, Using = "ui-button-secondary")]
-        private IWebElement acceptCookiesElement;
+        private IWebElement _acceptCookiesElement;
 
         [FindsBy(How = How.Id, Using = "register_email")]
-        private IWebElement emailElement;
+        private IWebElement _emailElement;
 
         [FindsBy(How = How.Id, Using = "register_password")]
-        private IWebElement passwordElement;
+        private IWebElement _passwordElement;
 
         [FindsBy(How = How.Id, Using = "sender_property_status")]
-        private IWebElement requiredPropertyElement;
+        private IWebElement _requiredPropertyElement;
 
         [FindsBy(How = How.Id, Using = "register_submit")]
-        private IWebElement submitRegistrationRequestElement;
+        private IWebElement _submitRegistrationRequestElement;
 
         [FindsBy(How = How.Id, Using = "fancybox-close")]
-        private IWebElement closeSocialMediaChoicesElement;
+        private IWebElement _closeSocialMediaChoicesElement;
 
-        private void AcceptCookies() => acceptCookiesElement.Click();
-        private void TypeEmailAddress(string email) => emailElement.SendKeys(email);
-        private void TypePassword(string password) => passwordElement.SendKeys(password);
+        private void AcceptCookies() => _acceptCookiesElement.Click();
+        private void TypeEmailAddress(string email) => _emailElement.SendKeys(email);
+        private void TypePassword(string password) => _passwordElement.SendKeys(password);
 
         private void SelectUserProfile(string userProfile)
         {
-            var selectElement = new SelectElement(requiredPropertyElement);
+            var selectElement = new SelectElement(_requiredPropertyElement);
             selectElement.SelectByText(userProfile);
         }
-        private void ClickSubmitRegistration() => submitRegistrationRequestElement.Click();
-        private void SelectSocialMediaChoicesPopup() => closeSocialMediaChoicesElement.Click();
+        private void ClickSubmitRegistration() => _submitRegistrationRequestElement.Click();
+        private void SelectSocialMediaChoicesPopup() => _closeSocialMediaChoicesElement.Click();
         public void RegisterAsNewUser(string email, string password, string userProfile)
         {
             AcceptCookies();

@@ -106,7 +106,7 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
         [Then(@"I am able to update email update frequency to (.*)")]
         public void UpdateEmailUpdateFrequency(string emailUpdateFrequency)
         {
-            _driver.Navigate().GoToUrl(_configuration.MyZooplaUrl);
+            _driver.Navigate().GoToUrl(_configuration.MyAccountUrl);
 
             
         }
@@ -149,7 +149,7 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
         [Then(@"I am able to register for email alerts with frequency of (.*)")]
         public void GetAlertsForChosenFrequency(string alertFrequency)
         {
-            _driver.Navigate().GoToUrl(_configuration.MyZooplaUrl);
+            _driver.Navigate().GoToUrl(_configuration.MyAccountUrl);
             var registerEmailAlertsPage = new EmailAlerts();
             PageFactory.InitElements(_driver, registerEmailAlertsPage);
             registerEmailAlertsPage.CreateEmailAlert(alertFrequency);

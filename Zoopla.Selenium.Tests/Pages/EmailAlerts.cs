@@ -7,55 +7,55 @@ namespace Zoopla.Selenium.Tests.Pages
     internal class EmailAlerts
     {
         [FindsBy(How = How.Id, Using = "alert-btn-create")]
-        private IWebElement createAlertElement;
+        private IWebElement _createAlertElement;
 
         [FindsBy(How = How.Id, Using = "frequency_0")]
-        private IWebElement selectInstantAlertElement;
+        private IWebElement _selectInstantAlertElement;
 
         [FindsBy(How = How.Id, Using = "frequency_1")]
-        private IWebElement selectDailyAlertElement;
+        private IWebElement _selectDailyAlertElement;
 
         [FindsBy(How = How.Id, Using = "frequency_3")]
-        private IWebElement selectThreeDaysAlertElement;
+        private IWebElement _selectThreeDaysAlertElement;
 
         [FindsBy(How = How.Id, Using = "frequency_7")]
-        private IWebElement selectWeeklyAlertElement;
+        private IWebElement _selectWeeklyAlertElement;
 
         [FindsBy(How = How.Id, Using = "frequency_none")]
-        private IWebElement selectNoAlertElement;
+        private IWebElement _selectNoAlertElement;
 
         [FindsBy(How = How.Name, Using = "action:save")]
-        private IWebElement saveAlertElement;
+        private IWebElement _saveAlertElement;
 
         [FindsBy(How = How.Id, Using = "alerts-buttons-edit")]
-        private IWebElement editExistingAlertElement;
+        private IWebElement _editExistingAlertElement;
 
-        private void CreateEmailAlert() => createAlertElement.Click();
+        private void CreateEmailAlert() => _createAlertElement.Click();
 
         private void SetAlertFrequency(string alertFrequency)
         {
             switch (alertFrequency)
             {
                 case "Instant":
-                    selectInstantAlertElement.Click();
+                    _selectInstantAlertElement.Click();
                     break;
                 case "Daily":
-                    selectDailyAlertElement.Click();
+                    _selectDailyAlertElement.Click();
                     break;
                 case "ThreeDays":
-                    selectThreeDaysAlertElement.Click();
+                    _selectThreeDaysAlertElement.Click();
                     break;
                 case "Weekly":
-                    selectWeeklyAlertElement.Click();
+                    _selectWeeklyAlertElement.Click();
                     break;
                 case "None":
-                    selectNoAlertElement.Click();
+                    _selectNoAlertElement.Click();
                     break;
             }
         }
 
-        private void SaveEmailAlert() => saveAlertElement.Click();
-        private void EditExistingAlert() => editExistingAlertElement.Click();
+        private void SaveEmailAlert() => _saveAlertElement.Click();
+        private void EditExistingAlert() => _editExistingAlertElement.Click();
         
         public void CreateEmailAlert(string alertFrequency)
         {

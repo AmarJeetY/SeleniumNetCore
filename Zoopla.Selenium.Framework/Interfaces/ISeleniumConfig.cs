@@ -2,12 +2,12 @@
 {
     public interface ISeleniumConfig
     {
-        string RegisterUserUrl { get; set; }
-        string Browser { get; set; }
-        string MyZooplaUrl { get; set; }
-        string ToRentUrl { get; set; }
-        string ForSaleUrl { get; set; }
-        string HousePrices { get; set; }
+        string RegisterUserUrl { get;}
+        string Browser { get;}
+        string MyAccountUrl { get; }
+        string ToRentUrl { get; }
+        string ForSaleUrl { get; }
+        string HousePrices { get;}
 
     }
 }
