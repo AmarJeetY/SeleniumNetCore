@@ -27,19 +27,19 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
             _seleniumDriver.SetBrowser(_configuration.Browser);
             _driver = _seleniumDriver.GetWebDriver;
         }
+
+        [AfterScenario]
+        public new void AfterScenario()
+        {
+            base.AfterScenario();
+        }
         
         [BeforeFeature]
         public new static void BeforeFeatureStep(FeatureContext featureContext)
         {
             StepBase.BeforeFeatureStep(featureContext);
         }
-
-        [AfterFeature]
-        public static void AfterFeatureStep()
-        {
-            //_seleniumDriver.CloseWebDriverInstance();
-        }
-
+        
         [Given(@"I have registered on Zoopla and logged in	")]
         public void GivenIAmInNeedOfAProperty(string typeOfProperty)
         {
@@ -107,8 +107,9 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
         public void UpdateEmailUpdateFrequency(string emailUpdateFrequency)
         {
             _driver.Navigate().GoToUrl(_configuration.MyAccountUrl);
-
-            
+            var registerEmailAlertsPage = new EmailAlerts();
+            PageFactory.InitElements(_driver, registerEmailAlertsPage);
+            registerEmailAlertsPage.UpdateExistingEmailAlert(emailUpdateFrequency);
         }
 
 

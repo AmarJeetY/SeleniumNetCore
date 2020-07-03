@@ -20,7 +20,7 @@ namespace Zoopla.Selenium.Tests.Hooks
             IOC.Register(featureContext.FeatureContainer);
         }
 
-        public void AfterFeatureStep()
+        public void AfterScenario()
         {
             _seleniumDriver.CloseWebDriverInstance();
         }
