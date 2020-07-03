@@ -1,9 +1,11 @@
-﻿using System.IO;
+﻿using System.Data;
+using System.IO;
 using BoDi;
 using Microsoft.Extensions.Configuration;
 using Zoopla.Selenium.Framework.Common.Config;
 using Zoopla.Selenium.Framework.Driver;
 using Zoopla.Selenium.Framework.Interfaces;
+using IDataReader = Zoopla.Selenium.Framework.Interfaces.IDataReader;
 
 namespace Zoopla.Selenium.Framework.Utilities
 {
@@ -13,6 +15,10 @@ namespace Zoopla.Selenium.Framework.Utilities
         {
             RegisterConfig(container);
             container.RegisterTypeAs<SeleniumDriver, ISeleniumDriver>();
+            container.RegisterTypeAs<TestData, ITestData>();
+            container.RegisterTypeAs<CSVReader, IDataReader>();
+            container.RegisterTypeAs<TestCaseParser, ITestCaseParser>();
+            
         }
 
         public static T Resolve<T>(IObjectContainer container)

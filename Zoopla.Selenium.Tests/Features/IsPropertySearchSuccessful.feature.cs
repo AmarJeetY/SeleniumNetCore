@@ -19,7 +19,7 @@ namespace Zoopla.Selenium.Tests.Features
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "3.3.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public partial class UserRegistrationFeature : object, Xunit.IClassFixture<UserRegistrationFeature.FixtureData>, System.IDisposable
+    public partial class PropertySearchFeature : object, Xunit.IClassFixture<PropertySearchFeature.FixtureData>, System.IDisposable
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -28,10 +28,10 @@ namespace Zoopla.Selenium.Tests.Features
         
         private Xunit.Abstractions.ITestOutputHelper _testOutputHelper;
         
-#line 1 "IsUserRegistrationSuccessful.feature"
+#line 1 "IsPropertySearchSuccessful.feature"
 #line hidden
         
-        public UserRegistrationFeature(UserRegistrationFeature.FixtureData fixtureData, Zoopla_Selenium_Tests_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
+        public PropertySearchFeature(PropertySearchFeature.FixtureData fixtureData, Zoopla_Selenium_Tests_XUnitAssemblyFixture assemblyFixture, Xunit.Abstractions.ITestOutputHelper testOutputHelper)
         {
             this._testOutputHelper = testOutputHelper;
             this.TestInitialize();
@@ -40,8 +40,8 @@ namespace Zoopla.Selenium.Tests.Features
         public static void FeatureSetup()
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "UserRegistration", "\tIn order to get property alerts for my desired property\r\n\tAs a prospective Zoopl" +
-                    "a customer\r\n\tI want to regsister myself to Zoopla website", ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "PropertySearch", "\tIn order to get property alerts for my desired property\r\n\tAs a prospective Zoopl" +
+                    "a customer\r\n\tI want to search property as per my requirement", ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -81,16 +81,26 @@ namespace Zoopla.Selenium.Tests.Features
             this.TestTearDown();
         }
         
-        [Xunit.SkippableFactAttribute(DisplayName="RegisterOnWebsite")]
-        [Xunit.TraitAttribute("FeatureTitle", "UserRegistration")]
-        [Xunit.TraitAttribute("Description", "RegisterOnWebsite")]
-        [Xunit.TraitAttribute("Category", "registerUserTest")]
-        public virtual void RegisterOnWebsite()
+        [Xunit.SkippableTheoryAttribute(DisplayName="Get Email updates for your property")]
+        [Xunit.TraitAttribute("FeatureTitle", "PropertySearch")]
+        [Xunit.TraitAttribute("Description", "Get Email updates for your property")]
+        [Xunit.TraitAttribute("Category", "searchProperty")]
+        [Xunit.InlineDataAttribute("AC01-PropSearch", "Custom property \"NN1 2HS\"", new string[0])]
+        [Xunit.InlineDataAttribute("AC02-PropSearch", "Houses with attached garage", new string[0])]
+        [Xunit.InlineDataAttribute("AC03-PropSearch", "All properties within 15 minutes of \"SE1 2LH\"", new string[0])]
+        public virtual void GetEmailUpdatesForYourProperty(string testCase, string description, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
-                    "registerUserTest"};
+            string[] @__tags = new string[] {
+                    "searchProperty"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("RegisterOnWebsite", null, tagsOfScenario, argumentsOfScenario);
+            argumentsOfScenario.Add("testCase", testCase);
+            argumentsOfScenario.Add("description", description);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get Email updates for your property", null, tagsOfScenario, argumentsOfScenario);
 #line 7
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -112,10 +122,10 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 8
- testRunner.Given("I have registered on Zoopla and logged in", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("I have visited Zoopla home page and selected option <searchselection>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
- testRunner.Then("I get <result> of registration", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.When("I try to search property described in <testcase>", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             }
             this.ScenarioCleanup();
@@ -128,12 +138,12 @@ this.ScenarioInitialize(scenarioInfo);
             
             public FixtureData()
             {
-                UserRegistrationFeature.FeatureSetup();
+                PropertySearchFeature.FeatureSetup();
             }
             
             void System.IDisposable.Dispose()
             {
-                UserRegistrationFeature.FeatureTearDown();
+                PropertySearchFeature.FeatureTearDown();
             }
         }
     }
