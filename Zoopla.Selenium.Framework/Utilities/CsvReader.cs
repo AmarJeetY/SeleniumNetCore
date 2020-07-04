@@ -11,7 +11,7 @@ namespace Zoopla.Selenium.Framework.Utilities
             DataTable dt = new DataTable();
             using (StreamReader sr = new StreamReader(strFilePath))
             {
-                string[] headers = sr.ReadLine().Split(',');
+                string[] headers = sr.ReadLine().Split('|');
                 foreach (string header in headers)
                 {
                     dt.Columns.Add(header);
@@ -21,7 +21,7 @@ namespace Zoopla.Selenium.Framework.Utilities
                     var nextLine = sr.ReadLine();
                     if (!string.IsNullOrWhiteSpace(nextLine))
                     {
-                        string[] rows = nextLine.Split(',');
+                        string[] rows = nextLine.Split('|');
                         DataRow dr = dt.NewRow();
                         for (int i = 0; i < headers.Length; i++)
                         {

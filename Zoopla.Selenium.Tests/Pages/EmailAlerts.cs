@@ -27,11 +27,10 @@ namespace Zoopla.Selenium.Tests.Pages
         [FindsBy(How = How.Name, Using = "action:save")]
         private IWebElement _saveAlertElement;
 
-        [FindsBy(How = How.Id, Using = "alerts-buttons-edit")]
+        [FindsBy(How = How.CssSelector, Using = "#alerts-buttons-edit")]
         private IWebElement _editExistingAlertElement;
 
         private void CreateEmailAlert() => _createAlertElement.Click();
-
         private void SetAlertFrequency(string alertFrequency)
         {
             switch (alertFrequency)
@@ -65,6 +64,7 @@ namespace Zoopla.Selenium.Tests.Pages
 
         public void UpdateExistingEmailAlert(string alertFrequencyToUpdate)
         {
+            System.Threading.Thread.Sleep(3000);
             EditExistingAlert();
             SetAndSaveAlert(alertFrequencyToUpdate);
         }

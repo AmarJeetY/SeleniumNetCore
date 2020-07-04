@@ -13,3 +13,5 @@
 /.vs/Zoopla.Selenium.NetCore/DesignTimeBuild
 /Zoopla.Selenium.PageObjects/bin/Debug/netcoreapp3.1
 /.vs
+/Zoopla.Selenium.Tests/Features/IsPropertyAlertCreationSuccessful.feature.cs
+/Zoopla.Selenium.Tests/Features/IsPropertySearchSuccessful.feature.cs

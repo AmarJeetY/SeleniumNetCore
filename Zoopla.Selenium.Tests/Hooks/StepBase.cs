@@ -22,13 +22,7 @@ namespace Zoopla.Selenium.Tests.Hooks
 
         public void AfterScenario()
         {
-            _seleniumDriver.CloseWebDriverInstance();
-        }
-
-        [StepArgumentTransformation(@"(true|false|present|not present)")]
-        public bool BooleanTransform(string value)
-        {
-            return value == "true" || value == "present";
+           _seleniumDriver.CloseWebDriverInstance();
         }
     }
 }

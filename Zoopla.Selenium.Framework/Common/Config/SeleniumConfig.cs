@@ -10,5 +10,6 @@ namespace Zoopla.Selenium.Framework.Common.Config
         public string ToRentUrl { get; set; }
         public string ForSaleUrl { get; set; }
         public string HousePrices { get; set; }
+        public string HomePage { get; set; }
     }
 }

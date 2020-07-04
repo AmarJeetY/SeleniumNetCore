@@ -21,10 +21,10 @@ Scenario: Update existing email alert
 	Given I have registered on Zoopla with <myprofile> and logged in		
 	When I try to search property described in <testcase>
 	Then I am able to register for email alerts with frequency of <alertfrequency>
-	And I am able to update email update frequency to <changetoalertfrequency>
+	And I am able to update <alertfrequency> to new email frequency of <changetoalertfrequency>
 
 	# Please refer to TestData.csv file in TestData folder
 	# for search query parameters
 	Examples: 
-	| testcase         | description                                         | alertfrequency | changetoalertfrequency |myprofile            |
+	| testcase         | description                                        | alertfrequency | changetoalertfrequency |myprofile            |
 	| AC01-EmailAlerts | Rented property priced £800 to £1000 pcm in London | Weekly         | None                   |I am looking to rent |
