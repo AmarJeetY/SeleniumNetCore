@@ -8,36 +8,15 @@ namespace Zoopla.Selenium.Tests.Pages
 {
     internal class HomePage
     {
-        //driver.FindElement(By.Id("mn-rent")).Click();
-        //var mywebelementt = driver.FindElement(By.Id("search-input-location"));
-        //mywebelementt.SendKeys("London");
-        //mywebelementt.SendKeys(Keys.Tab);
-
-        //var minprice = driver.FindElement(By.Id("rent_price_min_per_month"));
-        //var minpriceelement = new SelectElement(minprice);
-        //minpriceelement.SelectByText("£800 pcm");
-
-        //var maxprice = driver.FindElement(By.Id("rent_price_max_per_month"));
-        //var maxpriceelement = new SelectElement(maxprice);
-        //maxpriceelement.SelectByText("£1,000 pcm");
-
-        //var bedrooms = driver.FindElement(By.Id("beds_min"));
-        //var bedroomselement = new SelectElement(bedrooms);
-        //bedroomselement.SelectByText("1+");
-
-        //driver.FindElement(By.Id("search-submit")).Click();
-        //driver.FindElement(By.Id("alert-btn-create")).Click();
-        //driver.FindElement(By.Id("frequency_1")).Click();
-
         [FindsBy(How = How.ClassName, Using = "ui-button-secondary")]
         private IWebElement _acceptCookiesElement;
 
         [FindsBy(How = How.XPath, Using = "(//span[contains(.,'To rent')])[1]")]
         private IWebElement _toRentSelectionElement;
-        
-        [FindsBy(How = How.ClassName, Using = "delete_autocomplete_suggestion")]
-        private IWebElement _deleteAutoSuggestionElement;
-        
+
+        [FindsBy(How = How.CssSelector, Using = ".search-advanced-toggle > span")]
+        private IWebElement _advanceSearchOptionsElement;
+
         [FindsBy(How = How.Id, Using = "search-input-location")]
         private IWebElement _searchLocationInputElement;
 
@@ -56,6 +35,7 @@ namespace Zoopla.Selenium.Tests.Pages
         public void AcceptCookies() => _acceptCookiesElement.Click();
         private void SelectToRent() => _toRentSelectionElement.Click();
 
+        private void SelectAdvanceSearchOptions() => _advanceSearchOptionsElement.Click();
         private void TypeAreaToSearchFor(string area)
         {
             _searchLocationInputElement.Clear();
@@ -63,8 +43,6 @@ namespace Zoopla.Selenium.Tests.Pages
             System.Threading.Thread.Sleep(3000);
             _searchLocationInputElement.Click();
             _searchLocationInputElement.SendKeys(Keys.ArrowDown);
-            
-            //_deleteAutoSuggestionElement.Click();
             _searchLocationInputElement.SendKeys(Keys.Tab);
         }
         private void SelectMinimumPrice(string minPrice)
@@ -95,6 +73,7 @@ namespace Zoopla.Selenium.Tests.Pages
             SelectMinimumPrice(searchParameters["MinPrice"]);
             SelectMaximumPrice(searchParameters["MaxPrice"]);
             SelectMinimumBeds(searchParameters["Bedrooms"]);
+            SelectAdvanceSearchOptions();
             SubmitSearch();
         }
         public void SearchForSaleProperty()

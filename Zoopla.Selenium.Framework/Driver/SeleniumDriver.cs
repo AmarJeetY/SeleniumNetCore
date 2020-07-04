@@ -40,7 +40,9 @@ namespace Zoopla.Selenium.Framework.Driver
         public void CloseWebDriverInstance()
         {
             if (_webDriver == null) return;
+            _webDriver.Close();
             _webDriver.Quit();
+            _webDriver.Dispose();
             _webDriver = null;
         }
     }

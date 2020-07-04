@@ -3,7 +3,6 @@ using OpenQA.Selenium;
 using TechTalk.SpecFlow;
 using TestProject.SDK.PageObjects;
 using Zoopla.Selenium.Framework.Interfaces;
-using Zoopla.Selenium.Framework.Utilities;
 using Zoopla.Selenium.Tests.Hooks;
 using Zoopla.Selenium.Tests.Pages;
 
@@ -47,18 +46,16 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
             _driver.Navigate().GoToUrl(_configuration.RegisterUserUrl);
             var registerUserPage = new RegisterUserPage();
             PageFactory.InitElements(_driver, registerUserPage);
-            registerUserPage.RegisterAsNewUser(_parsonDetails.EmailAddress(), _parsonDetails.Password, userProfile);
+            registerUserPage.RegisterAsNewUser(_parsonDetails.EmailAddress(), _parsonDetails.Password(), userProfile);
         }
 
         [Then(@"I am able to register for email alerts with frequency of (.*)")]
         public void GetAlertsForChosenFrequency(string alertFrequency)
         {
-            //_driver.Navigate().GoToUrl(_configuration.MyAccountUrl);
             var registerEmailAlertsPage = new EmailAlerts();
             PageFactory.InitElements(_driver, registerEmailAlertsPage);
             registerEmailAlertsPage.CreateEmailAlert(alertFrequency);
         }
-
 
         [Then(@"I am able to update (.*) to new email frequency of (.*)")]
         public void UpdateEmailUpdateFrequency(string currentAlertFrequency, string newAlertFrequency)
@@ -90,7 +87,7 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
         [Then(@"I get results from my property search")]
         public void ThenIAmGetResultsFromMyPropertySearch()
         {
-            //ScenarioContext.Current.Pending();
+           
         }
 
 
