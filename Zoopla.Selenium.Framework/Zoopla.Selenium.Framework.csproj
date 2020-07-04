@@ -20,14 +20,4 @@
     <PackageReference Include="xunit.assert" Version="2.4.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Features\TestData.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

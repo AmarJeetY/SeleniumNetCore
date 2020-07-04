@@ -9,6 +9,7 @@
         string ToRentUrl { get; set; }
         string ForSaleUrl { get; set; }
         string HousePrices { get; set; }
+        string DataFile { get; set; }
 
 
     }

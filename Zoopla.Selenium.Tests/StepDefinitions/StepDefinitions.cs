@@ -80,7 +80,7 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
         [When(@"I try to search property described in (.*)")]
         public void WhenITryToSearchPropertyIn(string testCase)
         {
-            var searchParameters = _testData.GetTestParameters(testCase);
+            var searchParameters = _testData.GetTestParameters(testCase,_configuration.DataFile);
             _driver.Navigate().GoToUrl(_configuration.HomePage);
             searchToRentPropertyPage = new HomePage();
             PageFactory.InitElements(_driver, searchToRentPropertyPage);
