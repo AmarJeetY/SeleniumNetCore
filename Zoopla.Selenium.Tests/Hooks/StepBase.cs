@@ -22,7 +22,7 @@ namespace Zoopla.Selenium.Tests.Hooks
         }
         public void AfterScenario()
         {
-          // _seleniumDriver.CloseWebDriverInstance();
+            //_seleniumDriver.CloseWebDriverInstance();
         }
     }
 }
