@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Text;
 using Zoopla.Selenium.Framework.Interfaces;
 
-namespace Zoopla.Selenium.Framework.Utilities
+namespace Zoopla.Selenium.Framework.Utilities.CSV
 {
     public class TestCaseParser : ITestCaseParser
     {
-
         public Dictionary<string, string> GetTestParameters(DataTable testData, string testCase)
         {
             var rowOfTestCase = FindNamedRow(testCase, testData);

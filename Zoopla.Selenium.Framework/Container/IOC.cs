@@ -5,6 +5,8 @@ using Zoopla.Selenium.Framework.Common.Config;
 using Zoopla.Selenium.Framework.Driver;
 using Zoopla.Selenium.Framework.Interfaces;
 using Zoopla.Selenium.Framework.Utilities;
+using Zoopla.Selenium.Framework.Utilities.CSV;
+using Zoopla.Selenium.Framework.Utilities.Person;
 
 namespace Zoopla.Selenium.Framework.Container
 {
@@ -17,6 +19,7 @@ namespace Zoopla.Selenium.Framework.Container
             container.RegisterTypeAs<TestData, ITestData>();
             container.RegisterTypeAs<CSVReader, IDataReader>();
             container.RegisterTypeAs<TestCaseParser, ITestCaseParser>();
+            container.RegisterTypeAs<Person, IPerson>();
         }
 
         public static T Resolve<T>(IObjectContainer container)

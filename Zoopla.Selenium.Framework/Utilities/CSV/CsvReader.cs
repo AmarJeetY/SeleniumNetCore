@@ -1,8 +1,7 @@
 ﻿using System.Data;
 using System.IO;
-using Zoopla.Selenium.Framework.Interfaces;
 
-namespace Zoopla.Selenium.Framework.Utilities
+namespace Zoopla.Selenium.Framework.Utilities.CSV
 {
     public class CSVReader : Interfaces.IDataReader
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Zoopla.Selenium.Framework.Interfaces;
 
-namespace Zoopla.Selenium.Framework.Utilities
+namespace Zoopla.Selenium.Framework.Utilities.CSV
 {
     class TestData : ITestData
     {

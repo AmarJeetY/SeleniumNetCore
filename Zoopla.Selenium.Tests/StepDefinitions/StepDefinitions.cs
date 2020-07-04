@@ -15,6 +15,7 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
         private readonly ISeleniumConfig _configuration;
         private IWebDriver _driver;
         private HomePage searchToRentPropertyPage;
+
         public StepDefinitions(ISeleniumConfig configuration)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
@@ -46,7 +47,7 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
             _driver.Navigate().GoToUrl(_configuration.RegisterUserUrl);
             var registerUserPage = new RegisterUserPage();
             PageFactory.InitElements(_driver, registerUserPage);
-            registerUserPage.RegisterAsNewUser(GeneratePersonData.RandomEmail(5), "Password123!", userProfile);
+            registerUserPage.RegisterAsNewUser(_parsonDetails.EmailAddress(), _parsonDetails.Password, userProfile);
         }
 
         [Then(@"I am able to register for email alerts with frequency of (.*)")]

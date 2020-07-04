@@ -8,10 +8,13 @@ namespace Zoopla.Selenium.Tests.Hooks
     {
         protected ISeleniumDriver _seleniumDriver;
         protected ITestData _testData;
+        protected IPerson _parsonDetails;
+
         public void BeforeScenario()
         {
             _seleniumDriver = IOC.Resolve<ISeleniumDriver>(FeatureContext.FeatureContainer);
             _testData = IOC.Resolve<ITestData>(FeatureContext.FeatureContainer);
+            _parsonDetails = IOC.Resolve<IPerson>(FeatureContext.FeatureContainer);
         }
         public static void BeforeFeatureStep(FeatureContext featureContext)
         {
