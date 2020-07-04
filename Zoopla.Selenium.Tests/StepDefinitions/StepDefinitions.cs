@@ -86,14 +86,10 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
             searchToRentPropertyPage.SearchToRentProperty(searchParameters);
         }
 
-        
-
-        
-
-        [Then(@"I am get results from my property search")]
+        [Then(@"I get results from my property search")]
         public void ThenIAmGetResultsFromMyPropertySearch()
         {
-            ScenarioContext.Current.Pending();
+            //ScenarioContext.Current.Pending();
         }
 
 

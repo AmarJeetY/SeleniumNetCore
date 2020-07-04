@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Castle.Core.Internal;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
@@ -68,26 +69,27 @@ namespace Zoopla.Selenium.Tests.Pages
         }
         private void SelectMinimumPrice(string minPrice)
         {
+            if (minPrice.IsNullOrEmpty()) return;
             var selectElement = new SelectElement(_minimumPriceElement);
             selectElement.SelectByText(minPrice);
         }
 
         private void SelectMaximumPrice(string maxPrice)
         {
+            if (maxPrice.IsNullOrEmpty()) return;
             var selectElement = new SelectElement(_maximumPriceElement);
             selectElement.SelectByText(maxPrice);
         }
 
         private void SelectMinimumBeds(string minBeds)
         {
+            if (minBeds.IsNullOrEmpty()) return;
             var selectElement = new SelectElement(_miniumBedsElement);
             selectElement.SelectByText(minBeds);
         }
         private void SubmitSearch() => _searchSubmitElement.Click();
         public void SearchToRentProperty(Dictionary<string,string> searchParameters)
         {
-            //testcase,TypeOfSearch,SearchArea,MinPrice,MaxPrice,PropertyType
-            //AcceptCookies();
             SelectToRent();
             TypeAreaToSearchFor(searchParameters["SearchArea"]);
             SelectMinimumPrice(searchParameters["MinPrice"]);
