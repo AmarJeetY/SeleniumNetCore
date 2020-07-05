@@ -1,6 +1,6 @@
 ﻿Feature: EmailAlerts
 	In order to get property alerts for my desired property
-	As a prospective Zoopla customer
+	As a Zoopla user
 	I want to regsister myself to Zoopla website and get property alerts
 
 @registerForPropertyAlert

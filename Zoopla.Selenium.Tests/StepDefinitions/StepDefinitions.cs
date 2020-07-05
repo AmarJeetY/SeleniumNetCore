@@ -50,13 +50,14 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
             PageFactory.InitElements(_driver, registerUserPage);
             registerUserPage.RegisterAsNewUser(_parsonDetails.EmailAddress(), _parsonDetails.Password(), userProfile);
         }
-
+        
         [Given(@"I goto travel search page")]
-        public void GivenIGotoTravelSearchPage()
+        public void VisitTravelSearchPage()
         {
             _driver.Navigate().GoToUrl(_configuration.TravelTimeUrl);
             _travelTimePage = new TravelTime();
             PageFactory.InitElements(_driver, _travelTimePage);
+            _travelTimePage.AcceptCookies();
         }
 
         [Then(@"I am able to register for email alerts with frequency of (.*)")]
@@ -70,6 +71,8 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
         [Then(@"I am able to update (.*) to new email frequency of (.*)")]
         public void UpdateEmailUpdateFrequency(string currentAlertFrequency, string newAlertFrequency)
         {
+            _registerEmailAlertsPage = new EmailAlerts();
+            PageFactory.InitElements(_driver, _registerEmailAlertsPage);
             _registerEmailAlertsPage.UpdateExistingEmailAlert(newAlertFrequency);
         }
 

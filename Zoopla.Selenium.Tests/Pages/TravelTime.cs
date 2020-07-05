@@ -1,16 +1,20 @@
 ﻿using System.Collections.Generic;
 using Castle.Core.Internal;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Support.PageObjects;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.PageObjects;
 
 namespace Zoopla.Selenium.Tests.Pages
 {
     internal class TravelTime
     {
-        [FindsBy(How = How.ClassName, Using = "section_to_rent")]
-        private IWebElement _toRentElement;
 
+        [FindsBy(How = How.ClassName, Using = "ui-button-secondary")]
+        private IWebElement _acceptCookiesElement;
+
+        [FindsBy(How = How.Id, Using = "section_to_rent")]
+        private IWebElement _toRentElement;
+        
         [FindsBy(How = How.Id, Using = "search-input-location")]
         private IWebElement _searchLocationInputElement;
 
@@ -26,6 +30,7 @@ namespace Zoopla.Selenium.Tests.Pages
         [FindsBy(How = How.Id, Using = "search-submit")]
         private IWebElement _searchSubmitElement;
 
+        public void AcceptCookies() => _acceptCookiesElement.Click();
         private void SearchCriteria() => _toRentElement.Click();
         private void SelectAdvanceSearchOptions() => _advanceSearchOptionsElement.Click();
         private void TypeAreaToSearchFor(string area)
@@ -56,6 +61,7 @@ namespace Zoopla.Selenium.Tests.Pages
         {
             SearchCriteria();
             SelectAdvanceSearchOptions();
+            TypeAreaToSearchFor(searchParameters["SearchArea"]);
             SelectMaxTravelTime(searchParameters["TravelTime"]);
             SelectMethodOfTransport(searchParameters["TransportMethod"]);
             SubmitSearch();
