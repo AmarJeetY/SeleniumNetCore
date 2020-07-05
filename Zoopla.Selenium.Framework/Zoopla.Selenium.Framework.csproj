@@ -16,8 +16,6 @@
     <PackageReference Include="Selenium.WebDriver" Version="3.141.0" />
     <PackageReference Include="Selenium.WebDriver.ChromeDriver" Version="83.0.4103.3910" />
     <PackageReference Include="Selenium.WebDriver.IEDriver" Version="3.150.1.1" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
-    <PackageReference Include="xunit.assert" Version="2.4.1" />
   </ItemGroup>
 
 </Project>

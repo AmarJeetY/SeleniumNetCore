@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using BoDi;
 using Microsoft.Extensions.Configuration;
-using Xunit.Sdk;
 using Zoopla.Selenium.Framework.Common.Config;
 using Zoopla.Selenium.Framework.Driver;
 using Zoopla.Selenium.Framework.Interfaces;
