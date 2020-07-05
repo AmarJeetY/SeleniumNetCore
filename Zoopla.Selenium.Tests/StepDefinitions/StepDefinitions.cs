@@ -13,9 +13,11 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
     {
         private readonly ISeleniumConfig _configuration;
         private IWebDriver _driver;
-        private HomePage _searchToRentPropertyPage;
+        private Home _searchToRentPropertyPage;
         private EmailAlerts _registerEmailAlertsPage;
         private TravelTime _travelTimePage;
+        private MyAccount _myAccountPage;
+        private RegisterUser _registerUserPage;
         public StepDefinitions(ISeleniumConfig configuration)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
@@ -34,7 +36,7 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
         {
             base.AfterScenario();
         }
-        
+
         [BeforeFeature]
         public new static void BeforeFeatureStep(FeatureContext featureContext)
         {
@@ -45,11 +47,11 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
         public void RegisterAndLogIn(string userProfile)
         {
             _driver.Navigate().GoToUrl(_configuration.RegisterUserUrl);
-            var registerUserPage = new RegisterUserPage();
-            PageFactory.InitElements(_driver, registerUserPage);
-            registerUserPage.RegisterAsNewUser(_parsonDetails.EmailAddress(), _parsonDetails.Password(), userProfile);
+            _registerUserPage = new RegisterUser();
+            PageFactory.InitElements(_driver, _registerUserPage);
+            _registerUserPage.RegisterAsNewUser(_parsonDetails.EmailAddress(), _parsonDetails.Password(), userProfile);
         }
-        
+
         [Given(@"I browse to travel search page")]
         public void VisitTravelSearchPage()
         {
@@ -63,11 +65,11 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
         {
             _registerEmailAlertsPage = new EmailAlerts();
             PageFactory.InitElements(_driver, _registerEmailAlertsPage);
-            _registerEmailAlertsPage.CreateEmailAlert(alertFrequency);
+            _registerEmailAlertsPage.CreateNewEmailAlert(alertFrequency);
         }
 
-        [Then(@"I am able to update (.*) to new email frequency of (.*)")]
-        public void UpdateEmailUpdateFrequency(string currentAlertFrequency, string newAlertFrequency)
+        [Then(@"I am able to update to new email frequency of (.*)")]
+        public void UpdateEmailUpdateFrequency(string newAlertFrequency)
         {
             _registerEmailAlertsPage = new EmailAlerts();
             PageFactory.InitElements(_driver, _registerEmailAlertsPage);
@@ -78,17 +80,17 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
         public void VisitZooplaHomePage()
         {
             _driver.Navigate().GoToUrl(_configuration.HomePage);
-            _searchToRentPropertyPage = new HomePage();
+            _searchToRentPropertyPage = new Home();
             PageFactory.InitElements(_driver, _searchToRentPropertyPage);
             _searchToRentPropertyPage.AcceptCookies();
         }
 
         [When(@"I try to search property described in (.*)")]
-        public void WhenITryToSearchPropertyIn(string testCase)
+        public void SearchProperty(string testCase)
         {
-            var searchParameters = _testData.GetTestParameters(testCase,_configuration.DataFile);
+            var searchParameters = _testData.GetTestParameters(testCase, _configuration.DataFile);
             _driver.Navigate().GoToUrl(_configuration.HomePage);
-            _searchToRentPropertyPage = new HomePage();
+            _searchToRentPropertyPage = new Home();
             PageFactory.InitElements(_driver, _searchToRentPropertyPage);
             _searchToRentPropertyPage.SearchToRentProperty(searchParameters);
         }
@@ -98,29 +100,34 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
         {
             var searchParameters = _testData.GetTestParameters(testCase, _configuration.DataFile);
             _driver.Navigate().GoToUrl(_configuration.TravelTimeUrl);
-            _travelTimePage = new TravelTime();
             PageFactory.InitElements(_driver, _travelTimePage);
             _travelTimePage.SearchPropertyBasedOnTravelTime(searchParameters);
-            
+
         }
 
         [Then(@"I am able to see my custom searched property appears first in list")]
         public void VerifyCustomSearch()
         {
-            
+            _driver.Navigate().GoToUrl(_configuration.MyAccountUrl);
+            _myAccountPage = new MyAccount();
+            PageFactory.InitElements(_driver, _myAccountPage);
+            _myAccountPage.SaveUniqueProperty();
         }
 
         [Then(@"I can confirm that the listed properties have garage attached to them")]
         public void VerifyPropertiesWithGarage()
         {
-            
+
         }
+
         [Then(@"I am able to retrieve results in saved search")]
         public void VerifyRetrievalOfSavedSearchResults()
         {
-           
+            _driver.Navigate().GoToUrl(_configuration.MyAccountUrl);
+            _myAccountPage = new MyAccount();
+            PageFactory.InitElements(_driver, _myAccountPage);
+            _myAccountPage.RetrieveSavedSearchResults();
         }
-
 
 
     }

@@ -3,25 +3,14 @@
 	As a Zoopla user
 	I want to regsister myself to Zoopla website and get property alerts
 
-@registerForPropertyAlert
-Scenario: Get Email updates for your property
-	Given I have registered on Zoopla with <myprofile> and logged in	
-	When I try to search property described in <testcase>
-	Then I am able to save search and register for saved search in form of email alerts with frequency of <alertfrequency>
-	And I am able to retrieve results in saved search
-	# Please refer to SearchParameters.csv file in TestData folder
-	# for search query parameters
-	Examples: 
-	| testcase         | description                                        | alertfrequency | myprofile            |
-	| AC01-EmailAlerts | Rented property priced £800 to £1000 pcm in London | Daily          | I am looking to rent |
-
 
 @registerAndUpdatePropertyAlert
-Scenario: Update existing email alert
+Scenario: Create and Update email alert
 	Given I have registered on Zoopla with <myprofile> and logged in		
 	When I try to search property described in <testcase>
 	Then I am able to save search and register for saved search in form of email alerts with frequency of <alertfrequency>
-	And I am able to update <alertfrequency> to new email frequency of <changetoalertfrequency>
+	And I am able to update to new email frequency of <changetoalertfrequency>
+	And I am able to retrieve results in saved search
 
 	# Please refer to SearchParameters.csv file in TestData folder
 	# for search query parameters

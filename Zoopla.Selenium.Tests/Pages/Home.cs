@@ -6,7 +6,7 @@ using SeleniumExtras.PageObjects;
 
 namespace Zoopla.Selenium.Tests.Pages
 {
-    internal class HomePage
+    internal class Home
     {
         [FindsBy(How = How.ClassName, Using = "ui-button-secondary")]
         private IWebElement _acceptCookiesElement;
@@ -55,10 +55,8 @@ namespace Zoopla.Selenium.Tests.Pages
 
         [FindsBy(How = How.Id, Using = "search-submit")]
         private IWebElement _searchSubmitElement;
-
         public void AcceptCookies() => _acceptCookiesElement.Click();
         private void SelectToRent() => _toRentSelectionElement.Click();
-
         private void SelectAdvanceSearchOptions() => _advanceSearchOptionsElement.Click();
         private void TypeAreaToSearchFor(string area)
         {

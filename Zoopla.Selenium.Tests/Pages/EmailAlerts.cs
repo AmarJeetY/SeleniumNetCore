@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 
-
 namespace Zoopla.Selenium.Tests.Pages
 {
     internal class EmailAlerts
@@ -50,38 +49,28 @@ namespace Zoopla.Selenium.Tests.Pages
                 case "None":
                     _selectNoAlertElement.Click();
                     break;
+                default:
+                    _selectNoAlertElement.Click();
+                    break;
             }
         }
-
         public void SaveEmailAlert() => _saveAlertElement.Click();
         private void EditExistingAlert() => _editExistingAlertElement.Click();
-        
-        public void CreateEmailAlert(string alertFrequency)
+        public void CreateNewEmailAlert(string alertFrequency)
         {
             CreateEmailAlert();
             SetAndSaveAlert(alertFrequency);
         }
-
         public void UpdateExistingEmailAlert(string alertFrequencyToUpdate)
         {
+            System.Threading.Thread.Sleep(3000);
             EditExistingAlert();
             SetAndSaveAlert(alertFrequencyToUpdate);
         }
-
         private void SetAndSaveAlert(string alertFrequency)
         {
-            //System.Threading.Thread.Sleep(5000);
             SetAlertFrequency(alertFrequency);
             SaveEmailAlert();
-
         }
-
-
-
-
-
-
-
-
     }
 }

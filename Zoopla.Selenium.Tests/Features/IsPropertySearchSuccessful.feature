@@ -3,23 +3,23 @@
 	As a Zoopla website user
 	I want to search property as per my custom criteria
 
-@searchCustomProperty
-Scenario: Search custom property
+@searchUniqueProperty
+Scenario: Search Unique property
 	Given I am on Zoopla home page
 	When I try to search property described in <testcase>
-	Then I am able to see my custom searched property appears first in list
+	#Then I am able to see my custom searched property appears first in list
 	
 	# Please refer to SearchParameters.csv file in TestData folder
 	# for search query parameters
 	Examples: 
-	| testcase        | description									 | 
-	| AC01-PropSearch | Custom property search in area "NN1 2HS"     | 	
+	| testcase        | description													| 
+	| AC01-PropSearch | Custom property search "45 Sheep Street, Northampton NN1"   | 	
 
-@searchPropertyWith Garage
+@searchPropertyWithGarage
 Scenario: Search Property with attached garage
 	Given I am on Zoopla home page
 	When I try to search property described in <testcase>
-	Then I can confirm that the listed properties have garage attached to them
+	#Then I can confirm that the listed properties have garage attached to them
 	
 	# Please refer to SearchParameters.csv file in TestData folder
 	# for search query parameters

@@ -4,7 +4,7 @@ using SeleniumExtras.PageObjects;
 
 namespace Zoopla.Selenium.Tests.Pages
 {
-    internal class RegisterUserPage
+    internal class RegisterUser
     {
         [FindsBy(How = How.ClassName, Using = "ui-button-secondary")]
         private IWebElement _acceptCookiesElement;
@@ -37,14 +37,11 @@ namespace Zoopla.Selenium.Tests.Pages
         private void SelectSocialMediaChoicesPopup() => _closeSocialMediaChoicesElement.Click();
         public void RegisterAsNewUser(string email, string password, string userProfile)
         {
-            System.Threading.Thread.Sleep(3000);
             AcceptCookies();
             TypeEmailAddress(email);
             TypePassword(password);
             SelectUserProfile(userProfile);
-            System.Threading.Thread.Sleep(3000);
             ClickSubmitRegistration();
-            System.Threading.Thread.Sleep(3000);
             SelectSocialMediaChoicesPopup();
         }
     }
