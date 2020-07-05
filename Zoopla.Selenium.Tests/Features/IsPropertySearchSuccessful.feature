@@ -1,16 +1,28 @@
 ﻿Feature: PropertySearch
 	In order to get property alerts for my desired property
 	As a Zoopla website user
-	I want to search property as per my requirement
+	I want to search property as per my custom criteria
 
-@searchProperty
-Scenario: Get Email updates for your property
+@searchCustomProperty
+Scenario: Search custom property
 	Given I am on Zoopla home page
-	When I try to search property described in <testcase>	
+	When I try to search property described in <testcase>
+	Then I am able to see my custom searched property appears first in list
 	
 	# Please refer to SearchParameters.csv file in TestData folder
 	# for search query parameters
 	Examples: 
 	| testcase        | description									 | 
-	| AC01-PropSearch | Custom property search in area "NN1 2HS"     | 
+	| AC01-PropSearch | Custom property search in area "NN1 2HS"     | 	
+
+@searchPropertyWith Garage
+Scenario: Search Property with attached garage
+	Given I am on Zoopla home page
+	When I try to search property described in <testcase>
+	Then I can confirm that the listed properties have garage attached to them
+	
+	# Please refer to SearchParameters.csv file in TestData folder
+	# for search query parameters
+	Examples: 
+	| testcase        | description									 |	
 	| AC02-PropSearch | Houses with attached garage in London    	 | 

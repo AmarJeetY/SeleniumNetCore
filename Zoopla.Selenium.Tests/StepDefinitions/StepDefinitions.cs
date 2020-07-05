@@ -16,7 +16,6 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
         private HomePage _searchToRentPropertyPage;
         private EmailAlerts _registerEmailAlertsPage;
         private TravelTime _travelTimePage;
-
         public StepDefinitions(ISeleniumConfig configuration)
         {
             _configuration = configuration ?? throw new ArgumentNullException(nameof(configuration));
@@ -51,16 +50,15 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
             registerUserPage.RegisterAsNewUser(_parsonDetails.EmailAddress(), _parsonDetails.Password(), userProfile);
         }
         
-        [Given(@"I goto travel search page")]
+        [Given(@"I browse to travel search page")]
         public void VisitTravelSearchPage()
         {
             _driver.Navigate().GoToUrl(_configuration.TravelTimeUrl);
             _travelTimePage = new TravelTime();
             PageFactory.InitElements(_driver, _travelTimePage);
-            _travelTimePage.AcceptCookies();
         }
 
-        [Then(@"I am able to register for email alerts with frequency of (.*)")]
+        [Then(@"I am able to save search and register for saved search in form of email alerts with frequency of (.*)")]
         public void GetAlertsForChosenFrequency(string alertFrequency)
         {
             _registerEmailAlertsPage = new EmailAlerts();
@@ -99,8 +97,31 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
         public void SearchPropertyBasedOnTravelTime(string testCase)
         {
             var searchParameters = _testData.GetTestParameters(testCase, _configuration.DataFile);
+            _driver.Navigate().GoToUrl(_configuration.TravelTimeUrl);
+            _travelTimePage = new TravelTime();
             PageFactory.InitElements(_driver, _travelTimePage);
             _travelTimePage.SearchPropertyBasedOnTravelTime(searchParameters);
+            
         }
+
+        [Then(@"I am able to see my custom searched property appears first in list")]
+        public void VerifyCustomSearch()
+        {
+            
+        }
+
+        [Then(@"I can confirm that the listed properties have garage attached to them")]
+        public void VerifyPropertiesWithGarage()
+        {
+            
+        }
+        [Then(@"I am able to retrieve results in saved search")]
+        public void VerifyRetrievalOfSavedSearchResults()
+        {
+           
+        }
+
+
+
     }
 }

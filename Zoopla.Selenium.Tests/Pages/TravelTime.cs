@@ -30,6 +30,9 @@ namespace Zoopla.Selenium.Tests.Pages
         [FindsBy(How = How.Id, Using = "search-submit")]
         private IWebElement _searchSubmitElement;
 
+        [FindsBy(How = How.Id, Using = "alert-btn-save")]
+        private IWebElement _saveSearchElement;
+
         public void AcceptCookies() => _acceptCookiesElement.Click();
         private void SearchCriteria() => _toRentElement.Click();
         private void SelectAdvanceSearchOptions() => _advanceSearchOptionsElement.Click();
@@ -57,6 +60,7 @@ namespace Zoopla.Selenium.Tests.Pages
         }
         private void SubmitSearch() => _searchSubmitElement.Click();
 
+        public void SaveSearch() => _saveSearchElement.Click();
         public void SearchPropertyBasedOnTravelTime(Dictionary<string, string> searchParameters)
         {
             SearchCriteria();

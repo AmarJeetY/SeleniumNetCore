@@ -25,8 +25,8 @@ namespace Zoopla.Selenium.Tests.Pages
         private IWebElement _closeSocialMediaChoicesElement;
 
         private void AcceptCookies() => _acceptCookiesElement.Click();
-        private void TypeEmailAddress(string email) => _emailElement.SendKeys(email);
-        private void TypePassword(string password) => _passwordElement.SendKeys(password);
+        private void TypeEmailAddress(string email) => _emailElement.SendKeys(email + Keys.Tab);
+        private void TypePassword(string password) => _passwordElement.SendKeys(password + Keys.Tab);
 
         private void SelectUserProfile(string userProfile)
         {
@@ -37,11 +37,14 @@ namespace Zoopla.Selenium.Tests.Pages
         private void SelectSocialMediaChoicesPopup() => _closeSocialMediaChoicesElement.Click();
         public void RegisterAsNewUser(string email, string password, string userProfile)
         {
+            System.Threading.Thread.Sleep(3000);
             AcceptCookies();
             TypeEmailAddress(email);
             TypePassword(password);
             SelectUserProfile(userProfile);
+            System.Threading.Thread.Sleep(3000);
             ClickSubmitRegistration();
+            System.Threading.Thread.Sleep(3000);
             SelectSocialMediaChoicesPopup();
         }
     }

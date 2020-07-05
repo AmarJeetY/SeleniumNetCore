@@ -7,8 +7,8 @@
 Scenario: Get Email updates for your property
 	Given I have registered on Zoopla with <myprofile> and logged in	
 	When I try to search property described in <testcase>
-	Then I am able to register for email alerts with frequency of <alertfrequency>
-	
+	Then I am able to save search and register for saved search in form of email alerts with frequency of <alertfrequency>
+	And I am able to retrieve results in saved search
 	# Please refer to SearchParameters.csv file in TestData folder
 	# for search query parameters
 	Examples: 
@@ -20,7 +20,7 @@ Scenario: Get Email updates for your property
 Scenario: Update existing email alert
 	Given I have registered on Zoopla with <myprofile> and logged in		
 	When I try to search property described in <testcase>
-	Then I am able to register for email alerts with frequency of <alertfrequency>
+	Then I am able to save search and register for saved search in form of email alerts with frequency of <alertfrequency>
 	And I am able to update <alertfrequency> to new email frequency of <changetoalertfrequency>
 
 	# Please refer to SearchParameters.csv file in TestData folder

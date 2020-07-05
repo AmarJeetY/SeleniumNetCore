@@ -53,7 +53,7 @@ namespace Zoopla.Selenium.Tests.Pages
             }
         }
 
-        private void SaveEmailAlert() => _saveAlertElement.Click();
+        public void SaveEmailAlert() => _saveAlertElement.Click();
         private void EditExistingAlert() => _editExistingAlertElement.Click();
         
         public void CreateEmailAlert(string alertFrequency)
@@ -64,13 +64,13 @@ namespace Zoopla.Selenium.Tests.Pages
 
         public void UpdateExistingEmailAlert(string alertFrequencyToUpdate)
         {
-            System.Threading.Thread.Sleep(3000);
             EditExistingAlert();
             SetAndSaveAlert(alertFrequencyToUpdate);
         }
 
         private void SetAndSaveAlert(string alertFrequency)
         {
+            //System.Threading.Thread.Sleep(5000);
             SetAlertFrequency(alertFrequency);
             SaveEmailAlert();
 
