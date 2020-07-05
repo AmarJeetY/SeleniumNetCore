@@ -13,7 +13,9 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
     {
         private readonly ISeleniumConfig _configuration;
         private IWebDriver _driver;
-        private HomePage searchToRentPropertyPage;
+        private HomePage _searchToRentPropertyPage;
+        private EmailAlerts _registerEmailAlertsPage;
+        private TravelTime _travelTimePage;
 
         public StepDefinitions(ISeleniumConfig configuration)
         {
@@ -49,29 +51,35 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
             registerUserPage.RegisterAsNewUser(_parsonDetails.EmailAddress(), _parsonDetails.Password(), userProfile);
         }
 
+        [Given(@"I goto travel search page")]
+        public void GivenIGotoTravelSearchPage()
+        {
+            _driver.Navigate().GoToUrl(_configuration.TravelTimeUrl);
+            _travelTimePage = new TravelTime();
+            PageFactory.InitElements(_driver, _travelTimePage);
+        }
+
         [Then(@"I am able to register for email alerts with frequency of (.*)")]
         public void GetAlertsForChosenFrequency(string alertFrequency)
         {
-            var registerEmailAlertsPage = new EmailAlerts();
-            PageFactory.InitElements(_driver, registerEmailAlertsPage);
-            registerEmailAlertsPage.CreateEmailAlert(alertFrequency);
+            _registerEmailAlertsPage = new EmailAlerts();
+            PageFactory.InitElements(_driver, _registerEmailAlertsPage);
+            _registerEmailAlertsPage.CreateEmailAlert(alertFrequency);
         }
 
         [Then(@"I am able to update (.*) to new email frequency of (.*)")]
         public void UpdateEmailUpdateFrequency(string currentAlertFrequency, string newAlertFrequency)
         {
-            var registerEmailAlertsPage = new EmailAlerts();
-            PageFactory.InitElements(_driver, registerEmailAlertsPage);
-            registerEmailAlertsPage.UpdateExistingEmailAlert(newAlertFrequency);
+            _registerEmailAlertsPage.UpdateExistingEmailAlert(newAlertFrequency);
         }
 
         [Given(@"I am on Zoopla home page")]
         public void VisitZooplaHomePage()
         {
             _driver.Navigate().GoToUrl(_configuration.HomePage);
-            searchToRentPropertyPage = new HomePage();
-            PageFactory.InitElements(_driver, searchToRentPropertyPage);
-            searchToRentPropertyPage.AcceptCookies();
+            _searchToRentPropertyPage = new HomePage();
+            PageFactory.InitElements(_driver, _searchToRentPropertyPage);
+            _searchToRentPropertyPage.AcceptCookies();
         }
 
         [When(@"I try to search property described in (.*)")]
@@ -79,17 +87,17 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
         {
             var searchParameters = _testData.GetTestParameters(testCase,_configuration.DataFile);
             _driver.Navigate().GoToUrl(_configuration.HomePage);
-            searchToRentPropertyPage = new HomePage();
-            PageFactory.InitElements(_driver, searchToRentPropertyPage);
-            searchToRentPropertyPage.SearchToRentProperty(searchParameters);
+            _searchToRentPropertyPage = new HomePage();
+            PageFactory.InitElements(_driver, _searchToRentPropertyPage);
+            _searchToRentPropertyPage.SearchToRentProperty(searchParameters);
         }
 
-        [Then(@"I get results from my property search")]
-        public void ThenIAmGetResultsFromMyPropertySearch()
+        [When(@"I try to search property based on travel time described in (.*)")]
+        public void SearchPropertyBasedOnTravelTime(string testCase)
         {
-           
+            var searchParameters = _testData.GetTestParameters(testCase, _configuration.DataFile);
+            PageFactory.InitElements(_driver, _travelTimePage);
+            _travelTimePage.SearchPropertyBasedOnTravelTime(searchParameters);
         }
-
-
     }
 }

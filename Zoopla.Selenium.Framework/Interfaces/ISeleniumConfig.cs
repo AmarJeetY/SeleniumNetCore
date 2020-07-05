@@ -8,8 +8,9 @@
         string MyAccountUrl { get; set; }
         string ToRentUrl { get; set; }
         string ForSaleUrl { get; set; }
-        string HousePrices { get; set; }
+        string HousePricesUrl { get; set; }
         string DataFile { get; set; }
+        string TravelTimeUrl { get; set; }
 
 
     }

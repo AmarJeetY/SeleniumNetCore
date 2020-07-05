@@ -15,18 +15,13 @@ namespace Zoopla.Selenium.Framework.Utilities.CSV
             _testCaseRepository = testCaseRepository ?? throw new ArgumentNullException(nameof(testCaseRepository));
             _dataReader = dataReader ?? throw new ArgumentNullException(nameof(dataReader));
         }
-
         public Dictionary<string, string> GetTestParameters(string testCase, string csvFile)
         {
             var dir = Path.GetDirectoryName(
                 System.Reflection.Assembly.GetExecutingAssembly().Location);
-
             var csvFilePath = dir + csvFile;
-            var testData = _dataReader.ReadData(csvFilePath);
-
-            var parameters = _testCaseRepository.GetTestParameters(testData, testCase);
-            return parameters;
+            using var testData = _dataReader.ReadData(csvFilePath);
+            return _testCaseRepository.GetTestParameters(testData, testCase);
         }
     }
 }
-

@@ -1,10 +1,10 @@
 ﻿using System.IO;
 using BoDi;
 using Microsoft.Extensions.Configuration;
+using Xunit.Sdk;
 using Zoopla.Selenium.Framework.Common.Config;
 using Zoopla.Selenium.Framework.Driver;
 using Zoopla.Selenium.Framework.Interfaces;
-using Zoopla.Selenium.Framework.Utilities;
 using Zoopla.Selenium.Framework.Utilities.CSV;
 using Zoopla.Selenium.Framework.Utilities.Person;
 
@@ -28,7 +28,12 @@ namespace Zoopla.Selenium.Framework.Container
         }
         private static void RegisterConfig(IObjectContainer container)
         {
-            var builder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("AppSettings.json", optional: true, reloadOnChange: true).AddEnvironmentVariables();
+            var appSettingsFile = Directory.GetCurrentDirectory() + "\\AppSettings.json";
+            if (!File.Exists(appSettingsFile))
+            {
+                throw new FileNotFoundException($"AppSettings.json file not found at location :  {appSettingsFile}");
+            }
+            var builder = new ConfigurationBuilder().AddJsonFile(appSettingsFile, optional: true, reloadOnChange: true).AddEnvironmentVariables();
             var configuration = builder.Build();
 
             var seleniumConfig = new SeleniumConfig();

@@ -9,7 +9,7 @@ Scenario: Get Email updates for your property
 	When I try to search property described in <testcase>
 	Then I am able to register for email alerts with frequency of <alertfrequency>
 	
-	# Please refer to TestData.csv file in TestData folder
+	# Please refer to SearchParameters.csv file in TestData folder
 	# for search query parameters
 	Examples: 
 	| testcase         | description                                        | alertfrequency | myprofile            |
@@ -23,7 +23,7 @@ Scenario: Update existing email alert
 	Then I am able to register for email alerts with frequency of <alertfrequency>
 	And I am able to update <alertfrequency> to new email frequency of <changetoalertfrequency>
 
-	# Please refer to TestData.csv file in TestData folder
+	# Please refer to SearchParameters.csv file in TestData folder
 	# for search query parameters
 	Examples: 
 	| testcase         | description                                        | alertfrequency | changetoalertfrequency |myprofile            |

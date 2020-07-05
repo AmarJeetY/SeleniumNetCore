@@ -53,11 +53,8 @@ namespace Zoopla.Selenium.Tests.Pages
         [FindsBy(How = How.Id, Using = "include_rented")]
         private IWebElement _letAgreedElement;
 
-
         [FindsBy(How = How.Id, Using = "search-submit")]
         private IWebElement _searchSubmitElement;
-
-
 
         public void AcceptCookies() => _acceptCookiesElement.Click();
         private void SelectToRent() => _toRentSelectionElement.Click();
@@ -79,21 +76,18 @@ namespace Zoopla.Selenium.Tests.Pages
             var selectElement = new SelectElement(_minimumPriceElement);
             selectElement.SelectByText(minPrice);
         }
-
         private void SelectMaximumPrice(string maxPrice)
         {
             if (maxPrice.IsNullOrEmpty()) return;
             var selectElement = new SelectElement(_maximumPriceElement);
             selectElement.SelectByText(maxPrice);
         }
-
         private void SelectMinimumBeds(string minBeds)
         {
             if (minBeds.IsNullOrEmpty()) return;
             var selectElement = new SelectElement(_miniumBedsElement);
             selectElement.SelectByText(minBeds);
         }
-
         private void TypeKeywords(string keyword)
         {
             if (keyword.IsNullOrEmpty()) return;
@@ -117,44 +111,39 @@ namespace Zoopla.Selenium.Tests.Pages
             var selectElement = new SelectElement(_furnishedStateElement);
             selectElement.SelectByText(furniture);
         }
-
         private void SelectSortBy(string sortBy)
         {
             if (sortBy.IsNullOrEmpty()) return;
             var selectElement = new SelectElement(_sortByElement);
             selectElement.SelectByText(sortBy);
         }
-
         private void SelectDistanceFromLocation(string distanceFromLocation)
         {
             if (distanceFromLocation.IsNullOrEmpty()) return;
             var selectElement = new SelectElement(_radiusElement);
             selectElement.SelectByText(distanceFromLocation);
         }
-
         private void SelectAdded(string added)
         {
             if (added.IsNullOrEmpty()) return;
             var selectElement = new SelectElement(_addedElement);
             selectElement.SelectByText(added);
         }
-
         private void SelectLetAgreed(string letAgreed)
         {
             if (letAgreed.IsNullOrEmpty()) return;
             _letAgreedElement.Click();
         }
-
         private void SelectSharedAcc(string sharedAcc)
         {
             if (sharedAcc.IsNullOrEmpty()) return;
             _sharedAccomdationElement.Click();
         }
-
         private void SubmitSearch() => _searchSubmitElement.Click();
         public void SearchToRentProperty(Dictionary<string,string> searchParameters)
         {
             SelectToRent();
+            SelectAdvanceSearchOptions();
             TypeAreaToSearchFor(searchParameters["SearchArea"]);
             SelectMinimumPrice(searchParameters["MinPrice"]);
             SelectMaximumPrice(searchParameters["MaxPrice"]);
@@ -167,10 +156,8 @@ namespace Zoopla.Selenium.Tests.Pages
             SelectSortBy(searchParameters["SortBy"]);
             SelectSharedAcc(searchParameters["SharedAcc"]);
             SelectLetAgreed(searchParameters["LetAgreed"]);
-            SelectAdvanceSearchOptions();
             SubmitSearch();
         }
-        
         public void SearchForSaleProperty()
         {
             // Code for searching property for Buy
