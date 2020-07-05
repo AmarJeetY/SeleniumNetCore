@@ -7,7 +7,7 @@
 Scenario: Search Unique property
 	Given I am on Zoopla home page
 	When I try to search property described in <testcase>
-	#Then I am able to see my custom searched property appears first in list
+	Then I am able to see my custom searched property appears first in list
 	
 	# Please refer to SearchParameters.csv file in TestData folder
 	# for search query parameters

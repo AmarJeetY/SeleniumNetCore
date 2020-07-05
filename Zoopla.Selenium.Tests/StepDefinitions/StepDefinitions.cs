@@ -111,7 +111,7 @@ namespace Zoopla.Selenium.Tests.StepDefinitions
             _driver.Navigate().GoToUrl(_configuration.MyAccountUrl);
             _myAccountPage = new MyAccount();
             PageFactory.InitElements(_driver, _myAccountPage);
-            _myAccountPage.SaveUniqueProperty();
+            
         }
 
         [Then(@"I can confirm that the listed properties have garage attached to them")]

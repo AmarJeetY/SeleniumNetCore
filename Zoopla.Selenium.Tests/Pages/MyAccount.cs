@@ -12,7 +12,6 @@ namespace Zoopla.Selenium.Tests.Pages
 
         [FindsBy(How = How.XPath, Using = "//i[contains(@class,'icon icon-star')])[1]")]
         private IWebElement _firstPropertySaveElement;
-        
         private void SelectRecentSearch() => _recentSearchesElement.Click();
         private void ViewRecentSearch() => _viewSavedSearchElement.Click();
         private void UniquePropertySave() => _firstPropertySaveElement.Click();
@@ -21,14 +20,5 @@ namespace Zoopla.Selenium.Tests.Pages
             SelectRecentSearch();
             ViewRecentSearch();
         }
-
-        public void SaveUniqueProperty()
-        {
-            //SelectRecentSearch();
-            //ViewRecentSearch();
-            UniquePropertySave();
-        }
-
-
     }
 }
