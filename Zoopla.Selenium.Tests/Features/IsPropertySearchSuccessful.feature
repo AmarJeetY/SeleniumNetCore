@@ -12,17 +12,17 @@ Scenario: Search Unique property
 	# Please refer to SearchParameters.csv file in TestData folder
 	# for search query parameters
 	Examples: 
-	| testcase        | description													| 
-	| AC01-PropSearch | Custom property search "45 Sheep Street, Northampton NN1"   | 	
+	| testcase        | description												  | 
+	| AC01-PropSearch | Custom property search "45 Sheep Street, Northampton NN1" | 	
 
 @searchPropertyWithGarage
 Scenario: Search Property with attached garage
 	Given I am on Zoopla home page
 	When I try to search property described in <testcase>
-	#Then I can confirm that the listed properties have garage attached to them
+	Then I can confirm that the properties in search results have specified feature attached to them
 	
 	# Please refer to SearchParameters.csv file in TestData folder
-	# for search query parameters
+	# for search query parameters. Here Garage is passed as keyword into search query
 	Examples: 
-	| testcase        | description									 |	
-	| AC02-PropSearch | Houses with attached garage in London    	 | 
+	| testcase        | description								|	
+	| AC02-PropSearch | Houses with attached "Garage" in London | 

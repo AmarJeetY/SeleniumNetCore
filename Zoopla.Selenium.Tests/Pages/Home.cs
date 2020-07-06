@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Castle.Core.Internal;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
@@ -25,6 +27,9 @@ namespace Zoopla.Selenium.Tests.Pages
 
         [FindsBy(How = How.Id, Using = "rent_price_max_per_month")]
         private IWebElement _maximumPriceElement;
+
+        [FindsBy(How = How.Id, Using = "property_type")]
+        private IWebElement _propertyType;
 
         [FindsBy(How = How.Id, Using = "beds_min")]
         private IWebElement _miniumBedsElement;
@@ -63,7 +68,7 @@ namespace Zoopla.Selenium.Tests.Pages
             if (area.IsNullOrEmpty()) return;
             _searchLocationInputElement.Clear();
             _searchLocationInputElement.SendKeys(area);
-            System.Threading.Thread.Sleep(3000);
+            //System.Threading.Thread.Sleep(3000);
             _searchLocationInputElement.Click();
             _searchLocationInputElement.SendKeys(Keys.ArrowDown);
             _searchLocationInputElement.SendKeys(Keys.Tab);
@@ -80,6 +85,13 @@ namespace Zoopla.Selenium.Tests.Pages
             var selectElement = new SelectElement(_maximumPriceElement);
             selectElement.SelectByText(maxPrice);
         }
+
+        private void SelectPropertyType(string propertyType)
+        {
+            if (propertyType.IsNullOrEmpty()) return;
+            var selectElement = new SelectElement(_propertyType);
+            selectElement.SelectByText(propertyType);
+        }
         private void SelectMinimumBeds(string minBeds)
         {
             if (minBeds.IsNullOrEmpty()) return;
@@ -91,7 +103,7 @@ namespace Zoopla.Selenium.Tests.Pages
             if (keyword.IsNullOrEmpty()) return;
             _typeKeywordElement.Clear();
             _typeKeywordElement.SendKeys(keyword);
-            System.Threading.Thread.Sleep(3000);
+            System.Threading.Thread.Sleep(2000);
             _typeKeywordElement.Click();
             _typeKeywordElement.SendKeys(Keys.ArrowDown);
             _typeKeywordElement.SendKeys(Keys.Tab);
@@ -145,6 +157,7 @@ namespace Zoopla.Selenium.Tests.Pages
             TypeAreaToSearchFor(searchParameters["SearchArea"]);
             SelectMinimumPrice(searchParameters["MinPrice"]);
             SelectMaximumPrice(searchParameters["MaxPrice"]);
+            SelectPropertyType(searchParameters["PropertyType"]);
             SelectMinimumBeds(searchParameters["Bedrooms"]);
             TypeKeywords(searchParameters["Keywords"]);
             SelectPriceForPeriod(searchParameters["PriceFrequency"]);
@@ -156,9 +169,29 @@ namespace Zoopla.Selenium.Tests.Pages
             SelectLetAgreed(searchParameters["LetAgreed"]);
             SubmitSearch();
         }
+
         public void SearchForSaleProperty()
         {
             // Code for searching property for Buy
+        }
+        public string GetFirstResultText(IWebDriver Driver)
+        {
+            var allSearchResults = Driver.FindElements(By.CssSelector(".listing-results > li"));
+            var firstResult = allSearchResults[0];
+            return firstResult.Text;
+        }
+
+        internal bool SearchForKeywordInAllResults(IWebDriver Driver, string propertyKeywords)
+        {
+            // Full description of the property is not available on listing page
+            // To get the full description of property the property need to be clicked 
+            // and opened in separate page which is possible but extremely time consuming / inefficient
+            // Possible solution is to opne few properties in separate page
+            // and check their full description for garage keyword.
+            
+            var allSearchResults = Driver.FindElements(By.CssSelector(".listing-results > li"));
+            return allSearchResults.Select(result => result.Text).All(propertyDescription => propertyDescription.Contains(propertyKeywords));
+           
         }
     }
 }

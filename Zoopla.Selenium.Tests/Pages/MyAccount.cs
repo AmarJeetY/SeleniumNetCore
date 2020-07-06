@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using System.Collections.Generic;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
 namespace Zoopla.Selenium.Tests.Pages
 {
@@ -9,12 +11,12 @@ namespace Zoopla.Selenium.Tests.Pages
 
         [FindsBy(How = How.XPath, Using = "//a[@class='myaccount-alert-action'][contains(.,'View')]")]
         private IWebElement _viewSavedSearchElement;
-
-        [FindsBy(How = How.XPath, Using = "//i[contains(@class,'icon icon-star')])[1]")]
-        private IWebElement _firstPropertySaveElement;
+        
+        [FindsBy(How = How.ClassName, Using = "listing-results")]
+        private List<IWebElement> _listOfSearchResultsElement;
+        
         private void SelectRecentSearch() => _recentSearchesElement.Click();
         private void ViewRecentSearch() => _viewSavedSearchElement.Click();
-        private void UniquePropertySave() => _firstPropertySaveElement.Click();
         public void RetrieveSavedSearchResults()
         {
             SelectRecentSearch();
